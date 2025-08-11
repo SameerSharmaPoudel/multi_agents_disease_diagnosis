@@ -1,11 +1,10 @@
 from typing import Dict, List, Optional
-from pydantic import BaseModel, Field, root_validator
+from pydantic import BaseModel, Field
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferMemory
-
 
 # 🔍 Required symptom keys for validation
 REQUIRED_SYMPTOMS = ["fever", "cough", "fatigue", "pain", "duration", "location"]
@@ -19,12 +18,9 @@ class SymptomInfo(BaseModel):
     duration: Optional[str] = Field(None, description="How long symptoms have lasted")
     location: Optional[str] = Field(None, description="Body part affected")
 
-    @root_validator
-    def validate_required_symptoms(cls, values):
-        missing = [sym for sym in REQUIRED_SYMPTOMS if not values.get(sym)]
-        if missing:
-            raise ValueError(f"Missing required symptoms: {', '.join(missing)}")
-        return values
+    def is_complete(self) -> bool:
+        """Check if all required symptoms are present and non-empty."""
+        return all(getattr(self, sym) for sym in REQUIRED_SYMPTOMS)
 
 
 class SymptomCollectorAgent:
@@ -51,18 +47,31 @@ class SymptomCollectorAgent:
         for msg in messages:
             self.memory.chat_memory.add_message(msg)
 
-        # Attempt to extract structured symptoms from conversation
         try:
+            # Try parsing symptoms from the chain output
             output = self.chain.invoke({"input": "Please summarize the symptoms collected so far."})
-            return {
-                "messages": messages,
-                "symptoms": output.dict(),
-                "agent_status": "complete"
-            }
+            symptoms = output.dict()
+
+            symptom_info = SymptomInfo(**symptoms)
+
+            if symptom_info.is_complete():
+                agent_status = "complete"
+                # Return the current messages (no new AIMessage appended here)
+                return {
+                    "messages": messages,
+                    "symptoms": symptoms,
+                    "agent_status": agent_status
+                }
+            else:
+                raise ValueError("Some required symptoms are missing.")
+
         except Exception as e:
-            clarification_prompt = f"Some required symptoms are missing. {str(e)} Please ask the user for clarification."
+            clarification_prompt = (
+                f"Some required symptoms are missing. {str(e)} Please ask the user for clarification."
+            )
             ai_response = self.llm.invoke([AIMessage(content=clarification_prompt)])
             self.memory.chat_memory.add_message(ai_response)
+
             return {
                 "messages": [*messages, ai_response],
                 "symptoms": {},
