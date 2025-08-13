@@ -48,8 +48,11 @@ class SymptomCollectorAgent:
             self.memory.chat_memory.add_message(msg)
 
         try:
-            # Try parsing symptoms from the chain output
-            output = self.chain.invoke({"input": "Please summarize the symptoms collected so far."})
+            #  Pass BOTH chat_history and input to the chain
+            output = self.chain.invoke({
+            "chat_history": self.memory.chat_memory.messages,
+            "input": "Please summarize the symptoms collected so far."
+        })
             symptoms = output.dict()
 
             symptom_info = SymptomInfo(**symptoms)
@@ -66,6 +69,7 @@ class SymptomCollectorAgent:
                 raise ValueError("Some required symptoms are missing.")
 
         except Exception as e:
+            print(f"[SymptomCollectorAgent] Validation or parsing error: {e}")
             clarification_prompt = (
                 f"Some required symptoms are missing. {str(e)} Please ask the user for clarification."
             )
