@@ -2,7 +2,7 @@ from utils.model_loader import ModelLoader
 from prompt_library.prompt import SYSTEM_PROMPT
 from langgraph.graph import StateGraph, MessagesState, END, START
 
-from agents.symptom_collector_agent import InterviewerAgent
+from agents.symptom_collector_agent import SymptomCollectorAgent
 from agents.symptom_analyzer_agent import AnalyzerAgent
 from agents.diagnosis_agent import DiagnosisAgent
 from agents.lab_agent import LabAgent
@@ -16,7 +16,7 @@ class GraphBuilder:
         self.system_prompt = SYSTEM_PROMPT
 
         # Initialize agents
-        self.interviewer_agent = InterviewerAgent(self.llm)
+        self.interviewer_agent = SymptomCollectorAgent(self.llm)
         self.analyzer_agent = AnalyzerAgent(self.llm)
         self.diagnosis_agent = DiagnosisAgent(self.llm)
         self.lab_agent = LabAgent(self.llm)
