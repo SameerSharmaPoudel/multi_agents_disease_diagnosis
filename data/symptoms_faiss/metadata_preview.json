@@ -1,0 +1,206 @@
+[
+  {
+    "row_id": 0,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 1,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "skin_rash",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 2,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 3,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 4,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "nodal_skin_eruptions"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 5,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "skin_rash",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 6,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 7,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 8,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "nodal_skin_eruptions"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 9,
+    "disease": "Fungal Infection",
+    "positive_symptoms": [
+      "itching",
+      "skin_rash",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 10,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 11,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "shivering",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 12,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 13,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 14,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "chills"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 15,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "shivering",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 16,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 17,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 18,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "chills"
+    ],
+    "label_col": "prognosis"
+  },
+  {
+    "row_id": 19,
+    "disease": "Allergy",
+    "positive_symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "label_col": "prognosis"
+  }
+]

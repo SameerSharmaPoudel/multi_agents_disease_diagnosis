@@ -63,8 +63,8 @@ def build_documents(df: pd.DataFrame, label_col: str) -> Tuple[List[Document], L
 
 def main():
     parser = argparse.ArgumentParser(description="Build FAISS index from symptom one-hot CSV")
-    parser.add_argument("--csv_path", type=str, required=True, help="Path to CSV (one-hot symptoms + label).")
-    parser.add_argument("--out_dir", type=str, default="./indices/symptoms_faiss", help="Output directory for the index.")
+    parser.add_argument("--csv_path", type=str, default='../data/symbipredict.csv', help="Path to CSV (one-hot symptoms + label).")
+    parser.add_argument("--out_dir", type=str, default="../data/symptoms_faiss", help="Output directory for the index.")
     parser.add_argument("--label_col", type=str, default=None, help="Optional: explicit label column name.")
     parser.add_argument("--hf_model", type=str, default="sentence-transformers/all-MiniLM-L6-v2",
                         help="HuggingFace embedding model.")
@@ -79,6 +79,7 @@ def main():
     docs, metadatas = build_documents(df, label_col)
 
     embeddings = HuggingFaceEmbeddings(model_name=args.hf_model)
+    # embedding_model = HuggingFaceEmbeddings(model_name="pritamdeka/BioBERT-mnli-snli-scinli-scitail-mednli-stsb")
     vs = FAISS.from_documents(docs, embeddings)
 
     # Save FAISS
