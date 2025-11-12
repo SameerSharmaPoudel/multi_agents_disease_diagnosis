@@ -79,26 +79,3 @@ class SymptomRetriever:
             items = items[:top_k]
 
         return items[:top_k]
-
-    @staticmethod
-    def suggest_discriminative_questions(results: List[Dict], max_questions: int = 5) -> List[str]:
-        """
-        From the top candidates, collect symptoms that are present in some diseases but not all,
-        and that the user hasn't confirmed yet. These become 'ask-next' questions.
-        """
-        # symptoms that appear among candidates (union)
-        union = set()
-        # symptoms common to all candidates (intersection)
-        intersection = None
-        for r in results:
-            s = set(r.get("missing_symptoms", [])) | set(r.get("matched_symptoms", []))
-            union |= s
-            if intersection is None:
-                intersection = s.copy()
-            else:
-                intersection &= s
-
-        # Discriminators = in union but not in intersection
-        discriminators = sorted(list(union - (intersection or set())))
-        questions = [f"Do you have {sym.replace('_', ' ')}?" for sym in discriminators[:max_questions]]
-        return questions
