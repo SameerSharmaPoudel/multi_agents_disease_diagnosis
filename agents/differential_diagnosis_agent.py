@@ -1,147 +1,106 @@
-from typing import List, Dict, Any
-import json
+from typing import Dict, List, Any
 import numpy as np
-from langchain.chains import RetrievalQA
-from utils.rag_utils import build_rag_chain
-
 
 class DifferentialDiagnosisAgent:
     """
-    Differential Diagnosis Agent:
-    - Takes top-ranked disease candidates from the SymptomAnalyzerAgent
-    - Performs deeper reasoning using RAG
-    - Generates discriminative follow-up questions
-    - Iteratively refines the diagnosis through a feedback loop
+    Single-pass differential agent compatible with LangGraph:
+    - Reads state['candidates'] and state['symptoms']
+    - Writes state['ranked_candidates'], state['pending_questions'] (NL), state['uncertainty']
+    - Uses hybrid ranking as fallback
+    - Implements batching logic for follow-up questions based on missing symptoms
     """
 
-    def __init__(self, rag_vectorstore, llm, max_candidates: int = 5, max_rounds: int = 3, confidence_threshold: float = 0.8):
-        self.qa_chain = build_rag_chain(rag_vectorstore, llm)
-        self.max_candidates = max_candidates
-        self.max_rounds = max_rounds
+    def __init__(self, llm=None, confidence_threshold: float = 0.8):
+        self.llm = llm
         self.confidence_threshold = confidence_threshold
 
-    # -------------------------------------------------------------------------
-    # 1️⃣ Core reasoning and ranking
-    # -------------------------------------------------------------------------
-    def analyze(self, symptoms: Dict[str, Any], candidates: List[Dict]) -> Dict:
-        """
-        Rank candidate diseases and explain reasoning using RAG.
-        """
-        observed = [k for k, v in symptoms.items() if str(v).strip().lower() not in {"no", "none", "", "absent", "false"}]
-
-        # Prepare context for reasoning
-        context = ""
-        for c in candidates[:self.max_candidates]:
-            context += (
-                f"Disease: {c['disease']}\n"
-                f"Matched symptoms: {', '.join(c['matched_symptoms'])}\n"
-                f"Missing symptoms: {', '.join(c['missing_symptoms'])}\n\n"
-            )
-
-        # RAG reasoning query
-        query = (
-            f"Given the observed symptoms: {', '.join(observed)}.\n"
-            f"Analyze and rank the likelihood of the following diseases:\n{context}\n"
-            f"Provide a ranked JSON list like this:\n"
-            f"{{'ranked_candidates': [{{'disease': str, 'likelihood': float, 'reason': str}}]}}\n"
-        )
-
-        response = self.qa_chain.run(query)
-
-        # Try to parse structured JSON
-        try:
-            parsed = json.loads(response)
-        except Exception:
-            parsed = {"ranked_candidates": []}
-
-        # Fallback to hybrid ranking if LLM fails
-        if not parsed["ranked_candidates"]:
-            parsed["ranked_candidates"] = self._hybrid_rank(candidates)
-
-        return parsed
-
-    # -------------------------------------------------------------------------
-    # 2️⃣ Hybrid fallback ranking (numeric + similarity-based)
-    # -------------------------------------------------------------------------
-    def _hybrid_rank(self, candidates: List[Dict]) -> List[Dict]:
-        ranked = []
+    def _hybrid_rank(self, candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        if not candidates:
+            return []
+        vecs = [c.get("vector_score") or 0.0 for c in candidates]
+        min_v, max_v = min(vecs), max(vecs)
+        def norm(v):
+            return 0.0 if max_v - min_v == 0 else (v - min_v) / (max_v - min_v)
+        scored = []
         for c in candidates:
-            score = 0.6 * (c.get("jaccard") or 0) + 0.4 * (c.get("vector_score") or 0)
-            ranked.append({
-                "disease": c["disease"],
+            j = c.get("jaccard") or 0.0
+            vs = norm(c.get("vector_score") or 0.0)
+            score = 0.6 * j + 0.4 * vs
+            scored.append({
+                "disease": c.get("disease"),
                 "likelihood": float(np.clip(score, 0.0, 1.0)),
-                "reason": "Based on symptom overlap and embedding similarity."
+                "reason": "hybrid(jaccard+vec)",
+                "matched_symptoms": c.get("matched_symptoms", []),
+                "missing_symptoms": c.get("missing_symptoms", [])
             })
-        ranked.sort(key=lambda x: x["likelihood"], reverse=True)
-        return ranked
+        scored.sort(key=lambda x: x["likelihood"], reverse=True)
+        return scored
 
-    # -------------------------------------------------------------------------
-    # 3️⃣ Follow-up question generation (discriminators)
-    # -------------------------------------------------------------------------
-    @staticmethod
-    def suggest_discriminative_questions(results: List[Dict], max_questions: int = 5) -> List[str]:
+    def _select_discriminators(self, candidates: List[Dict[str, Any]], known_symptoms: set, limit: int):
         """
-        Identify symptoms that are present in some diseases but not all.
-        These are the best next questions to ask the user.
+        Score missing symptoms by frequency among candidates and by candidate weight.
+        Return top 'limit' symptom keys (snake_case).
         """
-        union, intersection = set(), None
-        for r in results:
-            s = set(r.get("missing_symptoms", [])) | set(r.get("matched_symptoms", []))
-            union |= s
-            intersection = s.copy() if intersection is None else intersection & s
+        # weight each candidate by its jaccard (if present) or fallback equal weight
+        weights = {}
+        for c in candidates:
+            w = c.get("jaccard") or 0.0
+            for s in c.get("missing_symptoms", []):
+                if s in known_symptoms:
+                    continue
+                weights[s] = weights.get(s, 0.0) + w + 0.01  # small base
+        # sort by weight and return top
+        sorted_items = sorted(weights.items(), key=lambda x: x[1], reverse=True)
+        return [k for k, _ in sorted_items[:limit]]
 
-        discriminators = sorted(list(union - (intersection or set())))
-        return [f"Do you have {sym.replace('_', ' ')}?" for sym in discriminators[:max_questions]]
+    def _to_natural_question(self, symptom_key: str) -> str:
+        # transform snake_case into readable question
+        return f"Do you have {symptom_key.replace('_',' ')}?"
 
-    # -------------------------------------------------------------------------
-    # 4️⃣ Feedback loop: human-in-the-loop refinement
-    # -------------------------------------------------------------------------
-    def iterative_diagnosis(self, initial_symptoms: Dict[str, Any], candidates: List[Dict]) -> Dict:
-        """
-        Run an iterative refinement loop where follow-up questions are asked
-        and responses are integrated into updated reasoning.
-        """
-        symptoms = initial_symptoms.copy()
+    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        candidates = state.get("candidates", [])
+        symptoms = state.get("symptoms", {})
+        messages = state.get("messages", [])
 
-        for round_id in range(1, self.max_rounds + 1):
-            print(f"\n--- Iteration {round_id} ---")
+        # produce ranked candidates (hybrid)
+        ranked = self._hybrid_rank(candidates)
 
-            # Analyze with current symptom set
-            result = self.analyze(symptoms, candidates)
-            ranked = result.get("ranked_candidates", [])
+        top_likelihood = ranked[0]["likelihood"] if ranked else 0.0
+        state["ranked_candidates"] = ranked
+        state["top_likelihood"] = float(top_likelihood)
+        state["uncertainty"] = 1.0 - float(top_likelihood)
 
-            if not ranked:
-                print("⚠️ No valid results. Using fallback ranking.")
-                ranked = self._hybrid_rank(candidates)
+        # If top_likelihood already high enough, we won't ask follow-ups
+        if top_likelihood >= self.confidence_threshold:
+            state["pending_questions"] = []
+            state.setdefault("messages", []).append(f"[diagnoser] confident top {ranked[0]['disease']} ({top_likelihood:.2f})")
+            return state
 
-            # Display top candidates
-            top = ranked[0]
-            print(f"Top predicted disease: {top['disease']} (confidence: {top['likelihood']:.2f})")
+        # Build missing symptom candidates (unknown ones)
+        missing = state.get("missing_symptoms", []) or []
+        # remove symptoms already answered in session memory
+        known_present = {k for k, v in (symptoms or {}).items() if str(v).strip().lower() not in {"no","none","absent","0","false",""}}
+        unknown_missing = [s for s in missing if s not in known_present]
 
-            # Check stopping criteria
-            if top["likelihood"] >= self.confidence_threshold:
-                print("✅ Confidence threshold reached. Stopping iterative loop.")
-                break
+        # Batching logic
+        n_missing = len(unknown_missing)
+        if n_missing <= 3:
+            batch_size = n_missing
+        elif 4 <= n_missing <= 10:
+            batch_size = 3
+        else:
+            # choose top weighted discriminators (limit 5)
+            batch_size = 5
 
-            # Otherwise, generate discriminative follow-up questions
-            follow_up = self.suggest_discriminative_questions(candidates)
-            if not follow_up:
-                print("⚠️ No discriminative questions left. Stopping.")
-                break
+        # choose symptoms to ask based on weights if too many
+        if n_missing > batch_size:
+            discriminators = self._select_discriminators(candidates, known_present, batch_size)
+        else:
+            discriminators = unknown_missing[:batch_size]
 
-            print("\nFollow-up questions:")
-            for q in follow_up:
-                print(" -", q)
+        # Construct NL questions
+        questions = [self._to_natural_question(s) for s in discriminators]
 
-            # Human-in-the-loop feedback simulation (can be replaced with UI input)
-            for q in follow_up:
-                ans = input(f"{q} (yes/no): ").strip().lower()
-                symptom_name = q.replace("Do you have ", "").replace("?", "").replace(" ", "_")
-                symptoms[symptom_name] = "yes" if ans.startswith("y") else "no"
-
-            # Reanalyze with updated symptoms
-            print("🔁 Updating diagnosis based on feedback...\n")
-
-        result["final_symptoms"] = symptoms
-        result["final_candidates"] = ranked
-        return result
+        state["pending_questions"] = questions
+        state.setdefault("messages", []).append(f"[diagnoser] pending_questions: {questions}")
+        return state
