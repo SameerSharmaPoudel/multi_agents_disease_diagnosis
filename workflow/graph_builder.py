@@ -1,7 +1,11 @@
+# graph_builder.py
 from utils.model_loader import ModelLoader
 from prompt_library.prompt import SYSTEM_PROMPT
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langgraph.predefined import interrupt
+
+from utils.logging_config import get_logger
+log = get_logger("GraphBuilder")
 
 from agents.symptom_collector_agent import SymptomCollectorAgent
 from agents.symptom_analyzer_agent import SymptomAnalyzerAgent
@@ -9,12 +13,13 @@ from agents.differential_diagnosis_agent import DifferentialDiagnosisAgent
 from agents.explainer_agent import ExplainerAgent
 from agents.memory_agent import MemoryAgent
 
+
 class GraphBuilder:
     """
     LangGraph graph that implements:
-      collector -> analyzer -> diagnoser -> (maybe ask_user -> update -> analyzer) -> explainer -> memory -> END
-    - ask_user is an interrupt node: the frontend must supply 'user_response' to resume.
-    - update_symptoms simply takes user_response and pending_questions[0] and updates state['symptoms'].
+      memory_load -> collector -> analyzer -> diagnoser -> (maybe ask_user -> update_symptoms -> analyzer) -> explainer -> memory_persist -> END
+    - memory_load (MemoryAgent.run) ensures patient_id & merges history into state['symptoms'].
+    - ask_user is an interrupt node: graph pauses and returns control to caller; caller must set state['user_response'] and re-invoke.
     """
 
     def __init__(self, model_provider="groq", rag_vectorstore=None):
@@ -40,7 +45,7 @@ class GraphBuilder:
         graph.add_node("ask_user", interrupt("user_response"))  # LangGraph pause here
         graph.add_node("update_symptoms", self._update_symptoms_after_answer)
         graph.add_node("explainer", self.explainer.run)
-        graph.add_node("memory_persist", self.memory.run)
+        graph.add_node("memory_persist", self.memory.run)  # memory.run doubles as persist when diagnosis present
 
         # edges
         graph.add_edge(START, "memory_load")
@@ -63,44 +68,27 @@ class GraphBuilder:
         return graph.compile()
 
     def _branch_after_diagnoser(self, state):
-        """
-        If diagnoser produced any pending_questions, ask user; otherwise proceed to explanation.
-        Also respect the uncertainty threshold: diagnoser sets state['pending_questions'] if needed.
-        """
         pending = state.get("pending_questions") or []
         if pending:
-            # frontend will ask these; interrupt node will pause and wait for user_response
             return "ask"
         return "explain"
 
     def _update_symptoms_after_answer(self, state):
-        """
-        Called after ask_user interrupt. Expects state['user_response'] to contain
-        either a single answer or a dict of batch answers.
-
-        Behavior:
-          - If state['pending_questions'] present and user_response is string -> map to first pending
-          - If user_response is dict mapping question->answer or symptom_key->answer -> merge all
-        """
         resp = state.get("user_response")
         pending = state.get("pending_questions", [])
         symptoms = state.get("symptoms", {}) or {}
 
-        # Case 1: dict answers (from frontend batch)
         if isinstance(resp, dict):
-            # Accept both natural-question->answer and symptom_key->answer mappings
             for k, v in resp.items():
-                # try to convert "Do you have chest pain?" -> "chest_pain"
                 key = k
-                if k.lower().startswith("do you have"):
+                if isinstance(k, str) and k.lower().startswith("do you have"):
                     key = k.replace("Do you have ", "").replace("?", "").strip().replace(" ", "_")
                 symptoms[key] = v
         else:
-            # string answer -> assign to first pending question
+            # map single string response to first pending question
             if pending:
                 q = pending[0]
                 key = q.replace("Do you have ", "").replace("?", "").strip().replace(" ", "_")
-                # convert common answers to yes/no
                 val = str(resp).strip().lower()
                 if val.startswith("y"):
                     symptoms[key] = "yes"
@@ -109,16 +97,16 @@ class GraphBuilder:
                 else:
                     symptoms[key] = val
 
-        # remove the used pending question(s) from pending_questions (simple approach)
-        # frontend should supply which questions were answered in batch mode
         state["symptoms"] = symptoms
-        # Clear pending questions (graph will re-run analyzer which computes new missing)
+        # Clear pending questions; analyzer will recompute new missing set
         state["pending_questions"] = []
-        state.setdefault("messages", []).append(f"[update] applied user_response -> {resp}")
+        state.setdefault("messages", []).append({"agent": "graph", "content": f"applied user_response -> {resp}"})
+        log.info(f"Updated symptoms after answer: {symptoms}")
         return state
 
     def __call__(self):
         return self.build_graph()
+
     
 
 # Frontend integration note: When the graph reaches ask_user interrupt, it will pause and return to your runner 

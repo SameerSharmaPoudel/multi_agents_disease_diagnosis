@@ -1,30 +1,40 @@
+# orchestrator.py
 from graph_builder import GraphBuilder
+from utils.logging_config import get_logger
+
+log = get_logger("Orchestrator")
+
 
 class DiagnosisOrchestrator:
     def __init__(self, model_provider="groq", rag_vectorstore=None):
         self.builder = GraphBuilder(model_provider=model_provider, rag_vectorstore=rag_vectorstore)
         self.app = self.builder()
 
-    def start_session(self, user_initial_text: str) -> dict:
+    def start_session(self, user_initial_text: str, patient_id: str = None) -> dict:
         """
-        Start a new session: pass initial user message text.
-        Returns state; if waiting for user answers, frontend must collect answers and call resume_session().
+        Start a new session or resume if patient_id provided.
+        - user_initial_text: initial free-text user message (string)
+        - patient_id: optional session patient id string; if provided, memory loads history for that id
+        Returns state (may be final or an interrupted state waiting for user_response).
         """
         init_state = {"messages": [user_initial_text]}
+        if patient_id:
+            init_state["patient_id"] = patient_id
+            log.info(f"Starting session with provided patient_id: {patient_id}")
+        else:
+            log.info("Starting session (no patient_id provided)")
+
+        # Invoke the compiled LangGraph app with initial state
         state = self.app.invoke(init_state)
-        # Typically state will either be final or waiting for user_response via interrupt
         return state
 
-    def resume_session_with_answer(self, state: dict, user_response):
+    def resume_session_with_answer(self, state: dict, user_response) -> dict:
         """
         Resume the paused graph by injecting user_response into state and invoking again.
-        user_response: either a string or dict mapping questions->answers
+        - state: the paused state returned earlier by start_session or previous resume
+        - user_response: either a string or dict mapping pending question -> answer
         """
         state["user_response"] = user_response
-        # Reinvoke graph; it will proceed from the interrupt node
+        log.info("Resuming session with user_response")
         state = self.app.invoke(state)
         return state
-    
-#For real frontends, maintain state server-side keyed by session_id (the patient_id produced by MemoryAgent).
-# When ask_user is reached, send state['pending_questions'] to the client, collect answers, 
-# call resume_session_with_answer(state, answers_dict_or_string)
