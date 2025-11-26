@@ -1,0 +1,87 @@
+{"timestamp": "2025-11-23T18:44:30.747413Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 4ef93eb1-2fff-4df5-aaf7-3e4331fb4128", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:30.751975Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 4ef93eb1-2fff-4df5-aaf7-3e4331fb4128: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:32.658196Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 4b409c2d-da90-4402-b534-54a9b57bc1b8", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:32.661045Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 4b409c2d-da90-4402-b534-54a9b57bc1b8: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:32.662016Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: 4b409c2d-da90-4402-b534-54a9b57bc1b8", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:32.663055Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 4b409c2d-da90-4402-b534-54a9b57bc1b8: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:32.674449Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 4b409c2d-da90-4402-b534-54a9b57bc1b8", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T18:44:33.093376Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:00.912599Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: f2d9e407-1313-4242-bfc1-ac626caf33a1", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:00.914598Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f2d9e407-1313-4242-bfc1-ac626caf33a1: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:02.688901Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: c69bb3aa-6067-4779-81d1-d9c103bcab30", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:02.689894Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c69bb3aa-6067-4779-81d1-d9c103bcab30: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:02.689894Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: c69bb3aa-6067-4779-81d1-d9c103bcab30", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:02.690894Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c69bb3aa-6067-4779-81d1-d9c103bcab30: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:04.495092Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: c732051e-8e6d-4809-816b-15a8945d26e9", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:04.497100Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c732051e-8e6d-4809-816b-15a8945d26e9: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:04.518117Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for c732051e-8e6d-4809-816b-15a8945d26e9", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:05.636236Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.487674Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 2e1b19ef-042c-4106-863b-ed1fa1197b0a", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.489674Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 2e1b19ef-042c-4106-863b-ed1fa1197b0a: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.489674Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: 2e1b19ef-042c-4106-863b-ed1fa1197b0a", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.489674Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 2e1b19ef-042c-4106-863b-ed1fa1197b0a: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.501688Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 2e1b19ef-042c-4106-863b-ed1fa1197b0a", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.538673Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:07.540674Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 2e1b19ef-042c-4106-863b-ed1fa1197b0a: 2 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:09.248802Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 03f2a372-c4b1-4557-9e32-185a1b54e238", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:09.250802Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 03f2a372-c4b1-4557-9e32-185a1b54e238: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:09.259842Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 03f2a372-c4b1-4557-9e32-185a1b54e238", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:09.282340Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:11.012852Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: d5044fa4-06f6-40ad-b895-c3e0d6cc9543", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:11.014853Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for d5044fa4-06f6-40ad-b895-c3e0d6cc9543: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:11.023828Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for d5044fa4-06f6-40ad-b895-c3e0d6cc9543", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:11.044816Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.827380Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 367edb6f-d746-4e3c-b8fb-79e437fd9406", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.828382Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 367edb6f-d746-4e3c-b8fb-79e437fd9406: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.828382Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: 367edb6f-d746-4e3c-b8fb-79e437fd9406", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.829382Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 367edb6f-d746-4e3c-b8fb-79e437fd9406: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.838381Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 367edb6f-d746-4e3c-b8fb-79e437fd9406", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.859389Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T20:38:12.861389Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 367edb6f-d746-4e3c-b8fb-79e437fd9406: 1 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:25:57.212284Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 327494c8-f1c1-42d2-8b85-3eaaa14f3ae2", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:25:57.215284Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 327494c8-f1c1-42d2-8b85-3eaaa14f3ae2: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:00.415320Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 8b8bea96-b7b3-4d4c-bdd6-bbf94872faaf", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:00.422892Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 8b8bea96-b7b3-4d4c-bdd6-bbf94872faaf: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:00.423894Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: 8b8bea96-b7b3-4d4c-bdd6-bbf94872faaf", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:00.426576Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 8b8bea96-b7b3-4d4c-bdd6-bbf94872faaf: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:04.602010Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: dbcc11db-522c-4cc3-ae72-7ee2e35b27d0", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:04.608006Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for dbcc11db-522c-4cc3-ae72-7ee2e35b27d0: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:04.620815Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for dbcc11db-522c-4cc3-ae72-7ee2e35b27d0", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:05.091237Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.917507Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: f30f731c-9e06-49e4-ba69-3dbc1b1a1607", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.918503Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f30f731c-9e06-49e4-ba69-3dbc1b1a1607: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.929853Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for f30f731c-9e06-49e4-ba69-3dbc1b1a1607", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.947850Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.947850Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: f30f731c-9e06-49e4-ba69-3dbc1b1a1607", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.948855Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f30f731c-9e06-49e4-ba69-3dbc1b1a1607: 1 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.958849Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for f30f731c-9e06-49e4-ba69-3dbc1b1a1607", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.991860Z", "level": "INFO", "logger": "MemoryAgent", "message": "Appended visit summary to FAISS", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:07.993860Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f30f731c-9e06-49e4-ba69-3dbc1b1a1607: 2 symptoms, 2 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:10.340043Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 37b20712-5183-484b-984d-6479b15f3c57", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:10.341973Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 37b20712-5183-484b-984d-6479b15f3c57: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:10.351970Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 37b20712-5183-484b-984d-6479b15f3c57", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:10.375506Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:13.977310Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: 86d23619-7e00-4f39-b2bd-2fa193011d76", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:13.979267Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 86d23619-7e00-4f39-b2bd-2fa193011d76: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:13.992271Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for 86d23619-7e00-4f39-b2bd-2fa193011d76", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:14.012836Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.378471Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id: abc47ef2-be6e-444a-babd-985220dc67b6", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.380514Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for abc47ef2-be6e-444a-babd-985220dc67b6: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.391498Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for abc47ef2-be6e-444a-babd-985220dc67b6", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.409374Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created FAISS index and saved first doc", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.410354Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using provided patient_id: abc47ef2-be6e-444a-babd-985220dc67b6", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.412356Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for abc47ef2-be6e-444a-babd-985220dc67b6: 1 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.422355Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted visit for abc47ef2-be6e-444a-babd-985220dc67b6", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.453357Z", "level": "INFO", "logger": "MemoryAgent", "message": "Appended visit summary to FAISS", "meta": {"taskName": null}}
+{"timestamp": "2025-11-23T21:26:17.455355Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for abc47ef2-be6e-444a-babd-985220dc67b6: 2 symptoms, 2 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-11-25T18:11:58.785401Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-25T21:24:59.242480Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-25T22:31:36.379215Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-25T22:59:54.644354Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-25T23:13:24.420032Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T15:27:44.044603Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T15:28:39.067286Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session (no patient_id provided)", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T18:24:34.255440Z", "level": "INFO", "logger": "GraphBuilder", "message": "ask_user node reached — returning state unchanged", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T18:24:34.256320Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {}", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T19:21:27.437316Z", "level": "INFO", "logger": "GraphBuilder", "message": "ask_user node reached — returning state unchanged", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T19:21:27.439327Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {}", "meta": {"taskName": null}}
