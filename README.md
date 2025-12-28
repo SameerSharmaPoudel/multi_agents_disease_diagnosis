@@ -1,7 +1,7 @@
 # 🧠 Multi-Agents Disease Diagnostic System  
 A LangGraph-powered, RAG-enhanced, multi-turn diagnosis engine with long-term memory.
 
-This system uses multiple specialized agents (Symptom Collector, Analyzer, Differential Diagnoser, Explainer, Memory) orchestrated through **LangGraph** with **interrupts** for follow-up questions.  
+This system uses multiple specialized agents (Symptom Collector, Analyzer, Differential Diagnoser, Explainer, Memory) orchestrated through **LangGraph** with **Human in the loop** for follow-up questions.  
 It performs iterative reasoning until diagnostic uncertainty is reduced, while also saving patient history using **SQLite + FAISS** long-term memory.
 
 ---

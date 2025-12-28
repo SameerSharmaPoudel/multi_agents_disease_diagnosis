@@ -1,4 +1,5 @@
-# orchestrator.py
+# workflow/orchestrator.py
+
 from workflow.graph_builder import GraphBuilder
 from utils.logging_config import get_logger
 
@@ -7,55 +8,38 @@ log = get_logger("Orchestrator")
 
 class DiagnosisOrchestrator:
     """
-    Clean orchestrator that handles:
-    - LC-safe messages
-    - LangGraph Interrupt("user_response")
-    - Recursive resume flow
+    Two-phase orchestrator (NO interrupt).
     """
 
     def __init__(self, model_provider="groq", rag_vectorstore=None):
-        self.builder = GraphBuilder(
-            model_provider=model_provider,
-            rag_vectorstore=rag_vectorstore
-        )
+        self.builder = GraphBuilder(model_provider=model_provider, rag_vectorstore=rag_vectorstore)
         self.app = self.builder()
 
-    # ------------------------------------------------------------------
-    # START SESSION
-    # ------------------------------------------------------------------
-    def start_session(self, user_initial_text: str, patient_id: str = None) -> dict:
-        """
-        Prepare initial LC-compatible message and invoke the graph.
-        If the graph triggers Interrupt, pytest will catch it.
-        """
-        init_state = {
-            "messages": [
-                {"role": "user", "content": user_initial_text}
-            ]
+    def start_session(self, user_initial_text: str, patient_id: str | None = None) -> dict:
+        state = {
+            "messages": [{"role": "user", "content": user_initial_text}],
+            "symptoms": {},
+            "pending_questions": [],
         }
 
         if patient_id:
-            init_state["patient_id"] = patient_id
-            log.info(f"Starting session with provided patient_id: {patient_id}")
-        else:
-            log.info("Starting session (no patient_id provided)")
+            state["patient_id"] = patient_id
+            log.info("Starting session with patient_id=%s", patient_id)
 
-        # Execute graph
-        state = self.app.invoke(init_state, config={"recursion_limit": 50})
-        return state
+        return self.app.invoke(state, config={"recursion_limit": 50})
 
-    # ------------------------------------------------------------------
-    # RESUME SESSION AFTER USER ANSWERS FOLLOW-UP
-    # ------------------------------------------------------------------
     def resume_session_with_answer(self, state: dict, user_response) -> dict:
         """
-        Takes previously interrupted state and continues the graph flow.
+        Resume Phase 2 by injecting user_response.
         """
+        state = dict(state)
 
-        # Attach new user response
-        state = {**state, "user_response": user_response}
-        log.info(f"Resuming session with user_response={user_response}")
+        state["user_response"] = user_response
+        state.setdefault("messages", []).append({
+            "role": "user",
+            "content": str(user_response),
+        })
 
-        # Resume graph flow
-        updated = self.app.invoke(state, config={"recursion_limit": 50})
-        return updated
+        log.info("Resuming with user_response=%s", user_response)
+
+        return self.app.invoke(state, config={"recursion_limit": 50})

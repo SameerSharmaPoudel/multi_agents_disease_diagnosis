@@ -1,10 +1,12 @@
 # agents/memory_agent.py
+
 import sqlite3
 import uuid
 import json
 from pathlib import Path
 from typing import Dict, Any
 from datetime import datetime
+
 from utils.logging_config import get_logger
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -17,12 +19,26 @@ FAISS_INDEX_DIR = Path("./memory_faiss")
 
 
 class MemoryAgent:
+    """
+    MemoryAgent responsibilities (INTENTIONALLY LIMITED):
+
+    ✔ Assign / reuse patient_id
+    ✔ Load historical patient data
+    ✔ Persist completed visits
+    ✔ Maintain longitudinal symptom timeline
+    ✔ Maintain FAISS visit summaries
+
+    """
+
     def __init__(self, llm=None, embed_model: str = "sentence-transformers/all-MiniLM-L6-v2"):
         self.llm = llm
         self.embed_model = embed_model
+
         DB_PATH.parent.mkdir(parents=True, exist_ok=True)
         FAISS_INDEX_DIR.mkdir(parents=True, exist_ok=True)
+
         self._ensure_db()
+
         self.embeddings = HuggingFaceEmbeddings(model_name=self.embed_model)
         self.faiss_index_dir = str(FAISS_INDEX_DIR)
 
@@ -75,9 +91,9 @@ class MemoryAgent:
     def ensure_patient(self, state: Dict[str, Any]) -> str:
         pid = state.get("patient_id")
         if pid:
-            log.info(f"Using provided patient_id: {pid}")
+            log.info("Using existing patient_id=%s", pid)
             state.setdefault("debug", []).append(
-                {"agent": "memory", "msg": f"Using provided patient_id {pid}"}
+                {"agent": "memory", "msg": f"Using existing patient_id {pid}"}
             )
             return pid
 
@@ -89,17 +105,19 @@ class MemoryAgent:
         now = datetime.utcnow().isoformat()
 
         cur.execute(
-            "INSERT OR IGNORE INTO patients (patient_id, profile_json, created_at, updated_at) VALUES (?,?,?,?)",
+            "INSERT OR IGNORE INTO patients (patient_id, profile_json, created_at, updated_at) "
+            "VALUES (?,?,?,?)",
             (pid, json.dumps({}), now, now),
         )
 
         conn.commit()
         conn.close()
 
-        log.info(f"Created new patient_id: {pid}")
+        log.info("Created new patient_id=%s", pid)
         state.setdefault("debug", []).append(
             {"agent": "memory", "msg": f"Created new patient_id {pid}"}
         )
+
         return pid
 
     # ----------------------------------------------------
@@ -114,9 +132,14 @@ class MemoryAgent:
         profile = json.loads(row[0]) if row and row[0] else {}
 
         cur.execute(
-            "SELECT symptom, value, chronic, first_seen, last_seen FROM patient_symptoms WHERE patient_id = ?",
+            """
+            SELECT symptom, value, chronic, first_seen, last_seen
+            FROM patient_symptoms
+            WHERE patient_id = ?
+            """,
             (patient_id,),
         )
+
         rows = cur.fetchall()
         known_symptoms = {
             sym: {
@@ -129,9 +152,16 @@ class MemoryAgent:
         }
 
         cur.execute(
-            "SELECT visit_json, created_at FROM visit_history WHERE patient_id = ? ORDER BY created_at DESC LIMIT 50",
+            """
+            SELECT visit_json, created_at
+            FROM visit_history
+            WHERE patient_id = ?
+            ORDER BY created_at DESC
+            LIMIT 50
+            """,
             (patient_id,),
         )
+
         visits = []
         for vjson, created in cur.fetchall():
             try:
@@ -140,18 +170,28 @@ class MemoryAgent:
                 visits.append({"raw": vjson, "created_at": created})
 
         conn.close()
-        log.info("Loaded history for %s: %d symptoms, %d visits", patient_id, len(known_symptoms), len(visits))
+
+        log.info(
+            "Loaded history for %s: %d symptoms, %d visits",
+            patient_id,
+            len(known_symptoms),
+            len(visits),
+        )
 
         return {
             "profile": profile,
             "known_symptoms": known_symptoms,
-            "visits": visits
+            "visits": visits,
         }
 
     # ----------------------------------------------------
     # PERSIST VISIT
     # ----------------------------------------------------
     def persist_visit(self, patient_id: str, state: Dict[str, Any]):
+        """
+        Persist ONLY completed visits.
+        A visit is considered complete when diagnosis_result exists.
+        """
         conn = self._get_conn()
         cur = conn.cursor()
         now = datetime.utcnow().isoformat()
@@ -160,63 +200,74 @@ class MemoryAgent:
             "timestamp": now,
             "symptoms": state.get("symptoms", {}),
             "ranked_candidates": state.get("ranked_candidates", []),
-            "messages": state.get("messages", []),   # These are LC messages, OK
+            "messages": state.get("messages", []),
             "final": state.get("diagnosis_result", []),
         }
 
-        try:
-            cur.execute(
-                "INSERT INTO visit_history (patient_id, visit_json, created_at) VALUES (?,?,?)",
-                (patient_id, json.dumps(visit), now),
-            )
-        except Exception as e:
-            log.exception("Failed to insert visit_history: %s", e)
-            state.setdefault("debug", []).append(
-                {"agent": "memory", "msg": f"Persist failed: {e}"}
-            )
+        cur.execute(
+            "INSERT INTO visit_history (patient_id, visit_json, created_at) VALUES (?,?,?)",
+            (patient_id, json.dumps(visit), now),
+        )
 
-        # symptom timeline upsert
-        for s, v in (state.get("symptoms") or {}).items():
-            is_chronic = isinstance(v, str) and "chronic" in v.lower()
+        # Upsert symptom timeline
+        for symptom, value in (state.get("symptoms") or {}).items():
+            is_chronic = isinstance(value, str) and "chronic" in value.lower()
 
             cur.execute(
                 "SELECT id FROM patient_symptoms WHERE patient_id=? AND symptom=?",
-                (patient_id, s),
+                (patient_id, symptom),
             )
-            r = cur.fetchone()
+            row = cur.fetchone()
 
-            if r:
+            if row:
                 cur.execute(
-                    "UPDATE patient_symptoms SET value=?, chronic=?, last_seen=? WHERE id=?",
-                    (str(v), int(is_chronic), now, r[0]),
+                    """
+                    UPDATE patient_symptoms
+                    SET value=?, chronic=?, last_seen=?
+                    WHERE id=?
+                    """,
+                    (str(value), int(is_chronic), now, row[0]),
                 )
             else:
                 cur.execute(
-                    "INSERT INTO patient_symptoms (patient_id, symptom, value, chronic, first_seen, last_seen) VALUES (?,?,?,?,?,?)",
-                    (patient_id, s, str(v), int(is_chronic), now, now),
+                    """
+                    INSERT INTO patient_symptoms
+                    (patient_id, symptom, value, chronic, first_seen, last_seen)
+                    VALUES (?,?,?,?,?,?)
+                    """,
+                    (patient_id, symptom, str(value), int(is_chronic), now, now),
                 )
 
         conn.commit()
         conn.close()
-        log.info("Persisted visit for %s", patient_id)
 
+        log.info("Persisted completed visit for %s", patient_id)
         state.setdefault("debug", []).append(
             {"agent": "memory", "msg": "visit persisted"}
         )
 
-        # Append to FAISS
-        summary = f"Visit {now} - symptoms: {json.dumps(visit['symptoms'])} - diagnosis: {json.dumps(visit['final'])}"
+        # Append visit summary to FAISS
+        summary = (
+            f"Visit {now} | "
+            f"symptoms={json.dumps(visit['symptoms'])} | "
+            f"diagnosis={json.dumps(visit['final'])}"
+        )
+
+        doc = Document(
+            page_content=summary,
+            metadata={"patient_id": patient_id, "timestamp": now},
+        )
 
         try:
-            vs = FAISS.load_local(self.faiss_index_dir, self.embeddings, allow_dangerous_deserialization=True)
+            vs = FAISS.load_local(
+                self.faiss_index_dir,
+                self.embeddings,
+                allow_dangerous_deserialization=True,
+            )
+            vs.add_documents([doc])
         except Exception:
-            doc = Document(page_content=summary, metadata={"patient_id": patient_id, "timestamp": now})
             vs = FAISS.from_documents([doc], self.embeddings)
-            vs.save_local(self.faiss_index_dir)
-            return
 
-        doc = Document(page_content=summary, metadata={"patient_id": patient_id, "timestamp": now})
-        vs.add_documents([doc])
         vs.save_local(self.faiss_index_dir)
 
     # ----------------------------------------------------
@@ -226,24 +277,12 @@ class MemoryAgent:
         pid = self.ensure_patient(state)
         history = self.load_patient_history(pid)
 
-        current_symptoms = dict(state.get("symptoms") or {})
-
         state["patient_history"] = history
-        state["symptoms"] = current_symptoms
         state["patient_id"] = pid
+        state["symptoms"] = dict(state.get("symptoms") or {})
 
-        should_persist = bool(
-            state.get("symptoms")
-            or state.get("ranked_candidates")
-            or state.get("diagnosis_result")
-        )
-
-        if should_persist:
-            try:
-                self.persist_visit(pid, state)
-            except Exception as e:
-                state.setdefault("debug", []).append(
-                    {"agent": "memory", "msg": f"persist error: {e}"}
-                )
+        # Persist ONLY if final diagnosis exists
+        if state.get("diagnosis_result"):
+            self.persist_visit(pid, state)
 
         return state

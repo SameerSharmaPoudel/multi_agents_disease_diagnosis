@@ -85,3 +85,58 @@
 {"timestamp": "2025-11-26T18:24:34.256320Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {}", "meta": {"taskName": null}}
 {"timestamp": "2025-11-26T19:21:27.437316Z", "level": "INFO", "logger": "GraphBuilder", "message": "ask_user node reached — returning state unchanged", "meta": {"taskName": null}}
 {"timestamp": "2025-11-26T19:21:27.439327Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {}", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T19:37:05.520590Z", "level": "INFO", "logger": "GraphBuilder", "message": "ask_user node reached — returning state unchanged", "meta": {"taskName": null}}
+{"timestamp": "2025-11-26T19:37:05.521592Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {}", "meta": {"taskName": null}}
+{"timestamp": "2025-12-26T18:30:31.917328Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=e7185abe-35de-4f55-a374-e800bd7fe46e", "meta": {"taskName": null}}
+{"timestamp": "2025-12-26T18:30:31.920882Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for e7185abe-35de-4f55-a374-e800bd7fe46e: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-26T18:30:32.432106Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=e7185abe-35de-4f55-a374-e800bd7fe46e", "meta": {"taskName": null}}
+{"timestamp": "2025-12-26T18:30:32.433114Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for e7185abe-35de-4f55-a374-e800bd7fe46e: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T01:12:37.316850Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=f4485f3c-114f-4890-8df4-5cbc5f531de0", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T01:12:37.318856Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f4485f3c-114f-4890-8df4-5cbc5f531de0: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T01:12:37.480923Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=f4485f3c-114f-4890-8df4-5cbc5f531de0", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T01:12:37.480923Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for f4485f3c-114f-4890-8df4-5cbc5f531de0: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.010434Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=c22f3c2f-2d25-40a8-bea7-c5a450621271", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.012982Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c22f3c2f-2d25-40a8-bea7-c5a450621271: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.185358Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=c22f3c2f-2d25-40a8-bea7-c5a450621271", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.185358Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c22f3c2f-2d25-40a8-bea7-c5a450621271: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.201817Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=c22f3c2f-2d25-40a8-bea7-c5a450621271", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T16:03:33.203803Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c22f3c2f-2d25-40a8-bea7-c5a450621271: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.440251Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=fe7b0b52-5f71-4a2a-a8b9-121b3102c83d", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.443249Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for fe7b0b52-5f71-4a2a-a8b9-121b3102c83d: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.667814Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=fe7b0b52-5f71-4a2a-a8b9-121b3102c83d", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.668814Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for fe7b0b52-5f71-4a2a-a8b9-121b3102c83d: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.681814Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=fe7b0b52-5f71-4a2a-a8b9-121b3102c83d", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T17:32:18.682814Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for fe7b0b52-5f71-4a2a-a8b9-121b3102c83d: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.021034Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=40fccbba-e01a-45f8-8651-fbef86638efd", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.024275Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 40fccbba-e01a-45f8-8651-fbef86638efd: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.236340Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=40fccbba-e01a-45f8-8651-fbef86638efd", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.237329Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 40fccbba-e01a-45f8-8651-fbef86638efd: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.252393Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=40fccbba-e01a-45f8-8651-fbef86638efd", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.253394Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 40fccbba-e01a-45f8-8651-fbef86638efd: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.268536Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=40fccbba-e01a-45f8-8651-fbef86638efd", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.271049Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 40fccbba-e01a-45f8-8651-fbef86638efd: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T20:54:57.281725Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted completed visit for 40fccbba-e01a-45f8-8651-fbef86638efd", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:13.966722Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:13.968720Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.000322Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.002326Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.016634Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.018639Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.033157Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.035153Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.045355Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted completed visit for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.137619Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=805ba6bd-01c9-4bac-b9eb-b06f4e73a66b", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:29:14.140620Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 805ba6bd-01c9-4bac-b9eb-b06f4e73a66b: 7 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.290130Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.292599Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.322534Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.322534Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.338697Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.339695Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.354236Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.355242Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 0 symptoms, 0 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.364265Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted completed visit for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.449385Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.451385Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 7 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.462929Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
+{"timestamp": "2025-12-27T22:47:32.464435Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 7 symptoms, 1 visits", "meta": {"taskName": null}}
