@@ -81,4 +81,7 @@ class ExplainerAgent:
         state["diagnosis_result"] = ranked
         state["session_patient_id"] = session_id
 
+        state["explainer_output"] = explanation  
+        state["status"] = "completed" 
+
         return state

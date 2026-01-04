@@ -1,7 +1,6 @@
 # workflow/graph_builder.py
 
 from langgraph.graph import StateGraph, START, END
-from utils.model_loader import ModelLoader
 from utils.logging_config import get_logger
 
 from agents.symptom_collector_agent import SymptomCollectorAgent
@@ -15,7 +14,7 @@ log = get_logger("GraphBuilder")
 
 class GraphBuilder:
     """
-    Two-phase LangGraph pipeline (NO interrupt):
+    Two-phase LangGraph pipeline (NO interrupt).
 
     Phase 1:
       START → memory_load → apply_user_response → collector → analyzer → diagnoser
@@ -28,18 +27,30 @@ class GraphBuilder:
          └─ else → explainer → memory_persist → END
     """
 
-    def __init__(self, model_provider="groq", rag_vectorstore=None, llm=None):
-        self.model_loader = ModelLoader(model_provider=model_provider)
-        self.llm = llm or self.model_loader.load_llm()
+    def __init__(self, llm, rag_vectorstore=None):
+        """
+        GraphBuilder does NOT choose models.
+        It only consumes an already-initialized LLM.
+        """
+
+        if llm is None:
+            raise ValueError("GraphBuilder requires an initialized LLM")
+
+        self.llm = llm
         self.rag_vectorstore = rag_vectorstore
 
+        # ---------------------------------------------------------
+        # Agent initialization
+        # ---------------------------------------------------------
         self.collector = SymptomCollectorAgent(self.llm)
         self.analyzer = SymptomAnalyzerAgent()
         self.diagnoser = DifferentialDiagnosisAgent(llm=self.llm)
         self.explainer = ExplainerAgent(self.llm)
         self.memory = MemoryAgent(self.llm)
 
-    # ---------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # Graph construction
+    # ---------------------------------------------------------
 
     def build_graph(self):
         graph = StateGraph(dict)
@@ -83,7 +94,9 @@ class GraphBuilder:
 
         return graph.compile()
 
-    # ---------------------------------------------------------------------
+    # ---------------------------------------------------------
+    # Branching logic
+    # ---------------------------------------------------------
 
     def _branch_after_apply_user_response(self, state: dict) -> str:
         """
@@ -99,9 +112,17 @@ class GraphBuilder:
 
     def _branch_after_diagnoser(self, state: dict) -> str:
         pending = state.get("pending_questions") or []
-        return "pause" if pending else "explain"
 
-    # ---------------------------------------------------------------------
+        if pending:
+            state["status"] = "awaiting_user_input"
+            return "pause"
+
+        state["status"] = "running"
+        return "explain"
+
+    # ---------------------------------------------------------
+    # User response handling
+    # ---------------------------------------------------------
 
     def _apply_user_response_if_present(self, state: dict) -> dict:
         """
@@ -144,7 +165,11 @@ class GraphBuilder:
                 .lower()
             )
             val = str(resp).strip().lower()
-            symptoms[key] = "yes" if val.startswith("y") else "no" if val.startswith("n") else val
+            symptoms[key] = (
+                "yes" if val.startswith("y")
+                else "no" if val.startswith("n")
+                else val
+            )
 
         state["symptoms"] = symptoms
         state["pending_questions"] = []
@@ -157,7 +182,7 @@ class GraphBuilder:
         log.info("Updated symptoms: %s", symptoms)
         return state
 
-    # ---------------------------------------------------------------------
+    # ---------------------------------------------------------
 
     def __call__(self):
         return self.build_graph()
