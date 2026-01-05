@@ -2,12 +2,12 @@ from fastapi import FastAPI, HTTPException, Request
 from uuid import uuid4, UUID
 from fastapi.responses import JSONResponse
 
-from app.schemas import (
+from api.schemas import (
     StartDiagnosisRequest,
     ContinueDiagnosisRequest,
     DiagnosisResponse,
 )
-from app.state_store import InMemoryStateStore
+from api.state_store import InMemoryStateStore
 from workflow.orchestrator import DiagnosisOrchestrator
 from utils.logging_config import get_logger
 
