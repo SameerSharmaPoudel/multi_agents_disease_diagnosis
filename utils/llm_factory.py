@@ -1,4 +1,4 @@
-from config import settings
+from utils.config import settings
 from utils.model_loader import ModelLoader
 from tests.fakes.fake_llm import FakeLLM
 

@@ -35,3 +35,12 @@ This project enables:
   - Graph resumes, update_symptoms maps answer(s) into state['symptoms'].
   - Graph loops back to analyzer and diagnoser.
 - This repeats until diagnoser produces no pending_questions (confidence reached or no discriminators), then graph moves to explainer and memory_persist.
+
+
+# Run
+
+- Run Backend
+  uv run uvicorn api.main:app --reload
+
+- Run Frontend
+  uv run streamlit run streamlit_app/app.py
