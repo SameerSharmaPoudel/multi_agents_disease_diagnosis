@@ -2,6 +2,7 @@
 
 import streamlit as st
 from api_client import start_diagnosis, continue_diagnosis
+from config_frontend import frontend_settings
 
 # -------------------------------------------------
 # Page config
@@ -11,9 +12,15 @@ st.set_page_config(
     layout="centered",
 )
 
-if st.app_env == "test":
+# -------------------------------------------------
+# Environment banner
+# -------------------------------------------------
+if frontend_settings.app_env == "test":
     st.warning("⚠ Running in TEST mode (Fake LLM, no external APIs)")
 
+# -------------------------------------------------
+# UI Header
+# -------------------------------------------------
 st.title("🩺 Multi-Agent Disease Diagnosis Assistant")
 st.caption("Powered by a multi-agent AI system")
 
@@ -36,7 +43,6 @@ def render_chat():
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
-
 
 # -------------------------------------------------
 # Start diagnosis
@@ -74,9 +80,6 @@ else:
 
     status = st.session_state.status
 
-    # ---------------------------------------------
-    # Awaiting user input
-    # ---------------------------------------------
     if status == "awaiting_user_input":
         user_answer = st.chat_input("Your answer")
 
@@ -101,13 +104,10 @@ else:
 
             st.rerun()
 
-    # ---------------------------------------------
-    # Completed
-    # ---------------------------------------------
     elif status == "completed":
         st.success("Diagnosis completed")
 
-        if "data" in response and response["data"]:
+        if response.get("data"):
             with st.expander("📊 Diagnosis Details"):
                 st.json(response["data"])
 

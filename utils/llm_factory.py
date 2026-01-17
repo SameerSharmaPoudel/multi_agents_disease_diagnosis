@@ -1,4 +1,4 @@
-from utils.config import settings
+from utils.config_backend import backend_settings
 from utils.model_loader import ModelLoader
 from tests.fakes.fake_llm import FakeLLM
 
@@ -11,7 +11,7 @@ def get_llm():
     # -------------------------
     # Test environment → FakeLLM
     # -------------------------
-    if settings.app_env == "test":
+    if backend_settings.app_env == "test":
         return FakeLLM()
 
     # -------------------------
@@ -19,11 +19,11 @@ def get_llm():
     # -------------------------
     try:
         loader = ModelLoader(
-            provider=settings.llm_provider,
-            model=settings.llm_model,
+            provider=backend_settings.llm_provider,
+            model=backend_settings.llm_model,
         )
         llm = loader.load_llm()
-        print(f"[LLM] Using {settings.llm_provider}:{settings.llm_model}")
+        print(f"[LLM] Using {backend_settings.llm_provider}:{backend_settings.llm_model}")
         return llm
 
     except Exception as primary_error:
@@ -32,16 +32,16 @@ def get_llm():
     # -------------------------
     # Try fallback model (if defined)
     # -------------------------
-    if settings.llm_fallback_provider and settings.llm_fallback_model:
+    if backend_settings.llm_fallback_provider and backend_settings.llm_fallback_model:
         try:
             loader = ModelLoader(
-                provider=settings.llm_fallback_provider,
-                model=settings.llm_fallback_model,
+                provider=backend_settings.llm_fallback_provider,
+                model=backend_settings.llm_fallback_model,
             )
             llm = loader.load_llm()
             print(
                 f"[LLM] Fallback to "
-                f"{settings.llm_fallback_provider}:{settings.llm_fallback_model}"
+                f"{backend_settings.llm_fallback_provider}:{backend_settings.llm_fallback_model}"
             )
             return llm
 

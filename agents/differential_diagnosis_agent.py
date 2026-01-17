@@ -144,15 +144,17 @@ class DifferentialDiagnosisAgent:
         # If no candidates, still define pending_questions
         if not ranked:
             state["pending_questions"] = []
+            state["status"] = "awaiting_user_input"
             state.setdefault("messages", []).append({
                 "role": "assistant",
-                "content": "[diagnoser] no ranked candidates available yet"
+                "content": "[diagnoser] no ranked candidates available yet, insufficient information to make a diagnosis"
             })
             return state
 
         # CONFIDENT CASE
         if top_likelihood >= self.confidence_threshold:
             state["pending_questions"] = []
+            state["status"] = "completed"
             state.setdefault("messages", []).append({
                 "role": "assistant",
                 "content": f"[diagnoser] confident top {ranked[0]['disease']} ({top_likelihood:.2f})"
@@ -199,6 +201,7 @@ class DifferentialDiagnosisAgent:
 
         questions = [self._to_natural_question(s) for s in discriminators]
         state["pending_questions"] = questions
+        state["status"] = "awaiting_user_input"
 
         state.setdefault("messages", []).append({
             "role": "assistant",

@@ -20,21 +20,14 @@ app = FastAPI(
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    """
-    Catch-all exception handler.
-    Prevents leaking internal errors to clients.
-    """
     log.exception("Unhandled exception")
-
     return JSONResponse(
         status_code=500,
-        content={
-            "error": "Internal server error",
-        },
+        content={"error": "Internal server error"},
     )
 
 # ------------------------------------------------------------------
-# Global singletons (Phase-1)
+# Global singletons
 # ------------------------------------------------------------------
 
 state_store = InMemoryStateStore()
@@ -44,7 +37,6 @@ orchestrator = DiagnosisOrchestrator()
 # Helpers
 # ------------------------------------------------------------------
 
-
 def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
     """
     Translate internal agent state → API-safe response.
@@ -52,17 +44,18 @@ def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
 
     status = state.get("status", "running")
 
-    # Default message (safe fallback)
+    # Default fallback 
     message = "Diagnosis in progress."
 
-    # If waiting for user input
     if status == "awaiting_user_input":
         pending = state.get("pending_questions") or []
         message = pending[0] if pending else "Additional information required."
 
-    # If completed, only expose explainer output
     elif status == "completed":
-        message = state.get("explainer_output", "Diagnosis completed.")
+        message = state.get(
+            "explainer_output",
+            "Diagnosis completed."
+        )
 
     return DiagnosisResponse(
         session_id=session_id,
@@ -72,21 +65,18 @@ def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
         data={
             "diagnosis_result": state.get("diagnosis_result"),
             "confidence": state.get("confidence"),
-        }
-        if status == "completed"
-        else None,
+        } if status == "completed" else None,
     )
-
 
 # ------------------------------------------------------------------
 # Routes
 # ------------------------------------------------------------------
 
-
 @app.post("/diagnosis/start", response_model=DiagnosisResponse)
 async def start_diagnosis(request: StartDiagnosisRequest):
     """
     Start a new diagnosis session.
+    Graph guarantees a terminal status.
     """
 
     session_id = uuid4()
@@ -95,15 +85,32 @@ async def start_diagnosis(request: StartDiagnosisRequest):
     try:
         state = orchestrator.start_session(
             user_initial_text=request.initial_symptoms,
-            patient_id=request.patient_id,
+            patient_id=request.patient_id,  # optional, NOT session_id
         )
     except Exception as e:
         log.exception("Failed to start diagnosis")
         raise HTTPException(status_code=500, detail="Failed to start diagnosis") from e
 
+    # -------------------------------------------------
+    # 🔒 HARD CONTRACT WITH GRAPH
+    # -------------------------------------------------
+    status = state.get("status")
+
+    if status not in ("completed", "awaiting_user_input"):
+        log.error(
+            "Invalid terminal state from diagnosis graph",
+            extra={"status": status, "debug": state.get("debug")},
+        )
+        raise HTTPException(
+            status_code=500,
+            detail="Diagnosis engine returned an invalid state",
+        )
+
+    # Persist ONLY after graph completes its turn
     state_store.create(session_id, state)
 
     return _map_state_to_response(session_id, state)
+
 
 
 @app.post("/diagnosis/continue", response_model=DiagnosisResponse)
@@ -131,24 +138,14 @@ async def continue_diagnosis(request: ContinueDiagnosisRequest):
         raise HTTPException(status_code=500, detail="Failed to resume diagnosis") from e
 
     state_store.update(session_id, updated_state)
-
     return _map_state_to_response(session_id, updated_state)
 
 
 @app.get("/health", tags=["System"])
 async def health():
-    """
-    Liveness probe.
-    Confirms the service process is running.
-    """
     return {"status": "ok"}
 
 
 @app.get("/ready", tags=["System"])
 async def ready():
-    """
-    Readiness probe.
-    Confirms the service is ready to accept traffic.
-    """
-    # Phase-1: always ready if process is up
     return {"status": "ready"}

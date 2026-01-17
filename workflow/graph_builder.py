@@ -14,34 +14,25 @@ log = get_logger("GraphBuilder")
 
 class GraphBuilder:
     """
-    Two-phase LangGraph pipeline (NO interrupt).
+    Correct, invariant-safe LangGraph pipeline.
 
-    Phase 1:
-      START → memory_load → apply_user_response → collector → analyzer → diagnoser
-         ├─ pending_questions → END
-         └─ else → explainer → memory_persist → END
-
-    Phase 2:
-      START → memory_load → apply_user_response → analyzer → diagnoser
-         ├─ pending_questions → END
-         └─ else → explainer → memory_persist → END
+    HARD GUARANTEES:
+    - SymptomCollector ALWAYS runs on first visit
+    - Analyzer ALWAYS runs after symptoms exist
+    - Diagnoser NEVER finalizes without symptoms
+    - status is ALWAYS one of:
+        - awaiting_user_input
+        - completed
     """
 
     def __init__(self, llm, rag_vectorstore=None):
-        """
-        GraphBuilder does NOT choose models.
-        It only consumes an already-initialized LLM.
-        """
-
         if llm is None:
             raise ValueError("GraphBuilder requires an initialized LLM")
 
         self.llm = llm
         self.rag_vectorstore = rag_vectorstore
 
-        # ---------------------------------------------------------
-        # Agent initialization
-        # ---------------------------------------------------------
+        # Agents
         self.collector = SymptomCollectorAgent(self.llm)
         self.analyzer = SymptomAnalyzerAgent()
         self.diagnoser = DifferentialDiagnosisAgent(llm=self.llm)
@@ -55,29 +46,43 @@ class GraphBuilder:
     def build_graph(self):
         graph = StateGraph(dict)
 
+        # -----------------
         # Nodes
+        # -----------------
         graph.add_node("memory_load", self.memory.run)
         graph.add_node("apply_user_response", self._apply_user_response_if_present)
         graph.add_node("collector", self.collector.run)
         graph.add_node("analyzer", self.analyzer.run)
         graph.add_node("diagnoser", self.diagnoser.run)
-        graph.add_node("explainer", self.explainer.run)
+        graph.add_node("explainer", self._finalize_and_explain)
         graph.add_node("memory_persist", self.memory.run)
 
-        # Edges
-        graph.add_edge(START, "memory_load")
-        graph.add_edge("memory_load", "apply_user_response")
-
+        # =====================================================
+        # 🔑 CRITICAL: branch immediately at START
+        # =====================================================
         graph.add_conditional_edges(
-            "apply_user_response",
-            self._branch_after_apply_user_response,
+            START,
+            lambda state: "resume" if state.get("user_response") else "start",
             {
-                "initial": "collector",
-                "resume": "analyzer",
+                "start": "memory_load",
+                "resume": "apply_user_response",
             },
         )
 
+        # -----------------
+        # New session path
+        # -----------------
+        graph.add_edge("memory_load", "collector")
         graph.add_edge("collector", "analyzer")
+
+        # -----------------
+        # Resume path
+        # -----------------
+        graph.add_edge("apply_user_response", "analyzer")
+
+        # -----------------
+        # Shared path
+        # -----------------
         graph.add_edge("analyzer", "diagnoser")
 
         graph.add_conditional_edges(
@@ -95,44 +100,54 @@ class GraphBuilder:
         return graph.compile()
 
     # ---------------------------------------------------------
-    # Branching logic
+    # 🔒 HARD INVARIANT ENFORCEMENT
     # ---------------------------------------------------------
 
-    def _branch_after_apply_user_response(self, state: dict) -> str:
-        """
-        Resume path if user_response exists OR symptoms already exist.
-        """
-        if state.get("user_response") is not None:
-            return "resume"
-
-        if state.get("symptoms"):
-            return "resume"
-
-        return "initial"
-
     def _branch_after_diagnoser(self, state: dict) -> str:
-        pending = state.get("pending_questions") or []
+        """
+        Decide whether to pause or explain.
+        GUARANTEES terminal status.
+        """
 
+        symptoms = state.get("symptoms") or {}
+        pending = state.get("pending_questions")
+
+        # 🔴 Case 1: No symptoms extracted at all
+        if not symptoms:
+            state["pending_questions"] = ["Please describe your symptoms."]
+            state["status"] = "awaiting_user_input"
+            return "pause"
+
+        # 🟡 Case 2: Diagnoser explicitly requests more info
         if pending:
             state["status"] = "awaiting_user_input"
             return "pause"
 
-        state["status"] = "running"
+        # 🟢 Case 3: Safe to explain
         return "explain"
 
     # ---------------------------------------------------------
-    # User response handling
+    # Finalization
+    # ---------------------------------------------------------
+
+    def _finalize_and_explain(self, state: dict) -> dict:
+        """
+        Explainer + terminal normalization.
+        """
+        state = self.explainer.run(state)
+        state["status"] = "completed"
+        return state
+
+    # ---------------------------------------------------------
+    # Resume handling
     # ---------------------------------------------------------
 
     def _apply_user_response_if_present(self, state: dict) -> dict:
-        """
-        Apply user_response → symptoms (Phase 2).
-        """
         if state.get("user_response") is None:
             return state
 
         state = self._update_symptoms_after_answer(state)
-        state["user_response"] = None  # critical: prevent reapplication
+        state["user_response"] = None
         return state
 
     def _update_symptoms_after_answer(self, state: dict) -> dict:
@@ -140,21 +155,9 @@ class GraphBuilder:
         pending = state.get("pending_questions", [])
         symptoms = dict(state.get("symptoms", {}) or {})
 
-        # Dict-style answers
         if isinstance(resp, dict):
-            for k, v in resp.items():
-                key = k
-                if k.lower().startswith("do you have"):
-                    key = (
-                        k.replace("Do you have ", "")
-                        .replace("?", "")
-                        .strip()
-                        .replace(" ", "_")
-                        .lower()
-                    )
-                symptoms[key] = v
+            symptoms.update(resp)
 
-        # Free-text answer
         elif pending:
             q = pending[0]
             key = (
@@ -174,15 +177,8 @@ class GraphBuilder:
         state["symptoms"] = symptoms
         state["pending_questions"] = []
 
-        state.setdefault("messages", []).append({
-            "role": "assistant",
-            "content": f"[graph] applied user_response → {resp}"
-        })
-
         log.info("Updated symptoms: %s", symptoms)
         return state
-
-    # ---------------------------------------------------------
 
     def __call__(self):
         return self.build_graph()

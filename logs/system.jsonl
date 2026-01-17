@@ -140,3 +140,140 @@
 {"timestamp": "2025-12-27T22:47:32.451385Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 7 symptoms, 1 visits", "meta": {"taskName": null}}
 {"timestamp": "2025-12-27T22:47:32.462929Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=0721f4d8-3ec8-4e56-9505-e2a12f15e6d9", "meta": {"taskName": null}}
 {"timestamp": "2025-12-27T22:47:32.464435Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 0721f4d8-3ec8-4e56-9505-e2a12f15e6d9: 7 symptoms, 1 visits", "meta": {"taskName": null}}
+{"timestamp": "2026-01-13T22:26:01.349000Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:26:41.610231Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:26:45.513361Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:26:56.584646Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:27:22.613456Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:27:33.585758Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:32:27.650493Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:32:43.483445Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:35:32.073623Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:35:43.257093Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:35:51.363007Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:36:05.079370Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:53:09.155746Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:53:20.387078Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:53:28.437084Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T22:53:42.776640Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:09:54.770120Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:10:06.589950Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:10:10.426193Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:10:22.130146Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:10:25.894639Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:10:38.975914Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-13T23:15:09.636211Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session ca07433e-2e46-413d-afb8-f3d567296a0a", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-13T23:15:09.637723Z", "level": "ERROR", "logger": "FastAPI", "message": "Failed to start diagnosis", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T17:24:58.387653Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T17:25:48.929241Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T17:27:05.933475Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 2a1ba5dd-892e-4b26-ad3a-d16883c91936", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T17:27:05.934474Z", "level": "ERROR", "logger": "FastAPI", "message": "Failed to start diagnosis", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T18:02:03.324630Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T18:02:15.404341Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T19:34:53.420145Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T19:35:05.497460Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-14T19:35:43.413608Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session fef0c8f5-d3d8-4694-a88c-791887bb2ee3", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T19:35:43.414606Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting session with session_id=fef0c8f5-d3d8-4694-a88c-791887bb2ee3", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T19:35:43.471319Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=93cf3f3e-9d1d-4554-8023-886cdcfe516e", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-14T19:35:43.475268Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 93cf3f3e-9d1d-4554-8023-886cdcfe516e: 0 symptoms, 0 visits", "meta": {"taskName": "Task-4"}}
+{"timestamp": "2026-01-15T22:25:58.957346Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-15T22:26:38.445025Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-15T22:28:13.615252Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 69064ab0-f5f6-47b4-a0d2-32343750e4b2", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:28:13.616252Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:28:13.664991Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=c2c1e79d-0b73-4f0c-9d86-087dd194ab3b", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:28:13.668997Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for c2c1e79d-0b73-4f0c-9d86-087dd194ab3b: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:44:49.763476Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-15T22:45:40.336916Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-15T22:45:43.524444Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 08a50cfd-413d-4e45-9dcf-e7ea827fca9f", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:45:43.525446Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:45:43.579180Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=ac093da5-d6a1-47dd-8da3-28140269885f", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-15T22:45:43.583216Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for ac093da5-d6a1-47dd-8da3-28140269885f: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T13:02:44.621332Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T13:04:24.174123Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T13:15:53.773483Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 2484db9f-27fb-4253-abb8-ff32904920c4", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T13:15:53.775290Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T13:15:53.825454Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=da4bec90-5d78-4816-8f0b-229d8bc71bfe", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T13:15:53.829418Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for da4bec90-5d78-4816-8f0b-229d8bc71bfe: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:06:56.580225Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T14:07:09.823663Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T14:08:21.033466Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 3838b9bb-957e-4404-a7a4-4f1c3b91b768", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:08:21.035007Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:08:21.065425Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=b51f44c6-1a69-4b1d-88e1-a1559a79b860", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:08:21.067423Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for b51f44c6-1a69-4b1d-88e1-a1559a79b860: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:08:21.068421Z", "level": "INFO", "logger": "GraphBuilder", "message": "[branch] user_response=None | _symptoms_collected=None | symptoms={}", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:26:15.443388Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T14:26:32.755025Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T14:27:44.755762Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session ebb1aebf-c31d-48ec-afa6-9b5d610cb080", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:27:44.756757Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:27:44.775949Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=58220f1f-bb23-4058-8b77-2b8b0f008758", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:27:44.779570Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 58220f1f-bb23-4058-8b77-2b8b0f008758: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T14:27:44.781076Z", "level": "INFO", "logger": "GraphBuilder", "message": "[branch] user_response=None | _symptoms_collected=None | symptoms={}", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:32:10.115001Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T15:32:23.237885Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T15:32:48.696018Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 6d11cff6-3ba6-4e41-878f-0056052ddc26", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:32:48.696521Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:32:48.718188Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=9f9ff596-e535-409a-9229-138bf8f6458d", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:32:48.721693Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 9f9ff596-e535-409a-9229-138bf8f6458d: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:42:40.534736Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T15:44:22.841484Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T15:47:00.777422Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session b2639635-0582-4ede-8bd2-cb111d551b68", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:47:00.777422Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:47:00.800964Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=ab3c90db-fb41-477d-9cff-5aaf9bdd886c", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T15:47:00.804532Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for ab3c90db-fb41-477d-9cff-5aaf9bdd886c: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:21:10.803403Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:21:24.765584Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:25:11.827707Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 82276b39-f2d5-4f16-822e-23a08ac005d3", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:25:11.827707Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:25:11.859221Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=2f73827c-594c-432f-9a3a-f98aa642f659", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:25:11.861736Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 2f73827c-594c-432f-9a3a-f98aa642f659: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:25:12.446944Z", "level": "ERROR", "logger": "FastAPI", "message": "Invalid terminal state from diagnosis graph", "meta": {"taskName": "Task-6", "status": null, "debug": [{"agent": "memory", "msg": "Created new patient_id 2f73827c-594c-432f-9a3a-f98aa642f659"}, {"agent": "collector", "extracted": {"fever": "yes", "cough": "yes"}}, {"agent": "analyzer", "relevant_history_used": []}, {"agent": "diagnoser", "history_index_keys": [], "num_candidates": 8}]}}
+{"timestamp": "2026-01-16T22:36:11.625571Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:36:21.831370Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:40:54.810734Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session a7d70427-7ad6-48d3-b7de-4b5b0afd5e3a", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:40:54.811698Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:40:54.845872Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=348c507a-c3d9-4302-8264-ab1ebeec0236", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:40:54.848871Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 348c507a-c3d9-4302-8264-ab1ebeec0236: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:40:54.879411Z", "level": "ERROR", "logger": "FastAPI", "message": "Invalid terminal state from diagnosis graph", "meta": {"taskName": "Task-6", "status": null, "debug": [{"agent": "memory", "msg": "Created new patient_id 348c507a-c3d9-4302-8264-ab1ebeec0236"}, {"agent": "collector", "extracted": {"fever": "yes", "cough": "yes"}}, {"agent": "analyzer", "relevant_history_used": []}, {"agent": "diagnoser", "history_index_keys": [], "num_candidates": 8}]}}
+{"timestamp": "2026-01-16T22:44:32.033692Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:44:42.430520Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T22:45:47.812517Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session 6af37323-2e87-44a5-99d2-46b423b12e7f", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:45:47.813481Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:45:47.839375Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=020f4a0b-b502-43f5-9c58-5dae9c0b4905", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:45:47.841375Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for 020f4a0b-b502-43f5-9c58-5dae9c0b4905: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T22:45:47.870133Z", "level": "ERROR", "logger": "FastAPI", "message": "Invalid terminal state from diagnosis graph", "meta": {"taskName": "Task-6", "status": null, "debug": [{"agent": "memory", "msg": "Created new patient_id 020f4a0b-b502-43f5-9c58-5dae9c0b4905"}, {"agent": "collector", "extracted": {"fever": "yes", "cough": "yes"}}, {"agent": "analyzer", "relevant_history_used": []}, {"agent": "diagnoser", "history_index_keys": [], "num_candidates": 8}]}}
+{"timestamp": "2026-01-16T23:44:29.796785Z", "level": "INFO", "logger": "Orchestrator", "message": "LLM initialized: FakeLLM", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T23:45:11.722993Z", "level": "INFO", "logger": "Orchestrator", "message": "Diagnosis graph compiled successfully", "meta": {"taskName": "Task-1"}}
+{"timestamp": "2026-01-16T23:48:25.374999Z", "level": "INFO", "logger": "FastAPI", "message": "Starting new diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T23:48:25.374999Z", "level": "INFO", "logger": "Orchestrator", "message": "Starting diagnosis for new patient", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T23:48:25.447633Z", "level": "INFO", "logger": "MemoryAgent", "message": "Created new patient_id=aa230adc-bc66-472d-8d82-8d431643cfd2", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T23:48:25.449595Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for aa230adc-bc66-472d-8d82-8d431643cfd2: 0 symptoms, 0 visits", "meta": {"taskName": "Task-6"}}
+{"timestamp": "2026-01-16T23:48:46.939387Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-8"}}
+{"timestamp": "2026-01-16T23:48:46.940386Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-8"}}
+{"timestamp": "2026-01-16T23:48:46.942389Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes'}", "meta": {"taskName": "Task-8"}}
+{"timestamp": "2026-01-16T23:48:56.555770Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-10"}}
+{"timestamp": "2026-01-16T23:48:56.555770Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-10"}}
+{"timestamp": "2026-01-16T23:48:56.557768Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes'}", "meta": {"taskName": "Task-10"}}
+{"timestamp": "2026-01-16T23:49:01.641244Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-12"}}
+{"timestamp": "2026-01-16T23:49:01.642244Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-12"}}
+{"timestamp": "2026-01-16T23:49:01.643245Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes'}", "meta": {"taskName": "Task-12"}}
+{"timestamp": "2026-01-16T23:49:09.037897Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-14"}}
+{"timestamp": "2026-01-16T23:49:09.039440Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-14"}}
+{"timestamp": "2026-01-16T23:49:09.040484Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'no'}", "meta": {"taskName": "Task-14"}}
+{"timestamp": "2026-01-16T23:49:24.697849Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-16"}}
+{"timestamp": "2026-01-16T23:49:24.697849Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-16"}}
+{"timestamp": "2026-01-16T23:49:24.699397Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'no'}", "meta": {"taskName": "Task-16"}}
+{"timestamp": "2026-01-16T23:49:34.257727Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-18"}}
+{"timestamp": "2026-01-16T23:49:34.258727Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-18"}}
+{"timestamp": "2026-01-16T23:49:34.259730Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'yes'}", "meta": {"taskName": "Task-18"}}
+{"timestamp": "2026-01-16T23:49:45.259355Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-20"}}
+{"timestamp": "2026-01-16T23:49:45.260397Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-20"}}
+{"timestamp": "2026-01-16T23:49:45.261397Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'yes', 'mucoid_sputum': 'no'}", "meta": {"taskName": "Task-20"}}
+{"timestamp": "2026-01-16T23:49:50.130049Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-22"}}
+{"timestamp": "2026-01-16T23:49:50.130049Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-22"}}
+{"timestamp": "2026-01-16T23:49:50.131064Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'yes', 'mucoid_sputum': 'no'}", "meta": {"taskName": "Task-22"}}
+{"timestamp": "2026-01-16T23:49:54.905704Z", "level": "INFO", "logger": "FastAPI", "message": "Continuing diagnosis session b54c6f60-7f05-4c2b-ae84-2e4275793961", "meta": {"taskName": "Task-24"}}
+{"timestamp": "2026-01-16T23:49:54.906704Z", "level": "INFO", "logger": "Orchestrator", "message": "Resuming diagnosis workflow", "meta": {"taskName": "Task-24"}}
+{"timestamp": "2026-01-16T23:49:54.908213Z", "level": "INFO", "logger": "GraphBuilder", "message": "Updated symptoms: {'fever': 'yes', 'cough': 'yes', 'fatigue': 'yes', 'high_fever': 'yes', 'breathlessness': 'yes', 'family_history': 'yes', 'mucoid_sputum': 'yes'}", "meta": {"taskName": "Task-24"}}
+{"timestamp": "2026-01-16T23:49:54.931264Z", "level": "INFO", "logger": "MemoryAgent", "message": "Using existing patient_id=aa230adc-bc66-472d-8d82-8d431643cfd2", "meta": {"taskName": "Task-24"}}
+{"timestamp": "2026-01-16T23:49:54.932266Z", "level": "INFO", "logger": "MemoryAgent", "message": "Loaded history for aa230adc-bc66-472d-8d82-8d431643cfd2: 0 symptoms, 0 visits", "meta": {"taskName": "Task-24"}}
+{"timestamp": "2026-01-16T23:49:54.956786Z", "level": "INFO", "logger": "MemoryAgent", "message": "Persisted completed visit for aa230adc-bc66-472d-8d82-8d431643cfd2", "meta": {"taskName": "Task-24"}}

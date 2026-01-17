@@ -102,4 +102,6 @@ class SymptomCollectorAgent:
             "content": f"[collector] processed input"
         })
 
+        state["_symptoms_collected"] = True
+
         return state

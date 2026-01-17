@@ -40,7 +40,7 @@ This project enables:
 # Run
 
 - Run Backend
-  uv run uvicorn api.main:app --reload
+  -- uv run uvicorn api.main:app --env-file .env.backend 
 
 - Run Frontend
-  uv run streamlit run streamlit_app/app.py
+  -- uv run streamlit run streamlit_app/app.py

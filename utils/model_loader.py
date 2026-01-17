@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
-from config import settings
+from utils.config_backend import backend_settings
 
 
 class ModelLoader:
@@ -10,19 +10,19 @@ class ModelLoader:
 
     def load_llm(self):
         if self.provider == "groq":
-            if not settings.groq_api_key:
+            if not backend_settings.groq_api_key:
                 raise RuntimeError("GROQ_API_KEY not set")
             return ChatGroq(
                 model=self.model,
-                api_key=settings.groq_api_key,
+                api_key=backend_settings.groq_api_key,
             )
 
         if self.provider == "openai":
-            if not settings.openai_api_key:
+            if not backend_settings.openai_api_key:
                 raise RuntimeError("OPENAI_API_KEY not set")
             return ChatOpenAI(
                 model=self.model,
-                api_key=settings.openai_api_key,
+                api_key=backend_settings.openai_api_key,
             )
 
         raise ValueError(f"Unsupported LLM provider: {self.provider}")

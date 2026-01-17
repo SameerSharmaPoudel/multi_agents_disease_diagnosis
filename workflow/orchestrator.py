@@ -12,29 +12,21 @@ log = get_logger("Orchestrator")
 
 class DiagnosisOrchestrator:
     """
-    Phase-1 Orchestrator.
+    Phase-1 Orchestrator (consistent).
 
-    Responsibilities:
-    - Load environment variables
-    - Obtain LLM via get_llm()
-    - Build LangGraph once
-    - Expose stable entry points for FastAPI
+    Owns:
+    - LLM initialization
+    - Graph lifecycle
     """
 
     def __init__(self, rag_vectorstore: Optional[object] = None):
-        # ---------------------------------------------------------
-        # Environment & LLM initialization
-        # ---------------------------------------------------------
         load_dotenv()
 
         self.llm = get_llm()
         log.info("LLM initialized: %s", type(self.llm).__name__)
 
-        # ---------------------------------------------------------
-        # Graph construction
-        # ---------------------------------------------------------
         self.builder = GraphBuilder(
-            llm=self.llm,                 # overrides ModelLoader inside GraphBuilder
+            llm=self.llm,
             rag_vectorstore=rag_vectorstore,
         )
 
@@ -42,7 +34,7 @@ class DiagnosisOrchestrator:
         log.info("Diagnosis graph compiled successfully")
 
     # ---------------------------------------------------------
-    # Public API (FastAPI-facing)
+    # Public API
     # ---------------------------------------------------------
 
     def start_session(
@@ -51,7 +43,7 @@ class DiagnosisOrchestrator:
         patient_id: Optional[str] = None,
     ) -> dict:
         """
-        Start a new diagnosis session (Phase 1).
+        Start a new diagnosis workflow.
         """
 
         state = {
@@ -61,17 +53,15 @@ class DiagnosisOrchestrator:
         }
 
         if patient_id:
-            state["session_id"] = patient_id
-            log.info("Starting session with session_id=%s", patient_id)
+            state["patient_id"] = patient_id
+            log.info("Starting diagnosis for existing patient_id=%s", patient_id)
+        else:
+            log.info("Starting diagnosis for new patient")
 
         result = self.app.invoke(
             state,
             config={"recursion_limit": 50},
         )
-
-        # Normalize terminal status (graph controls logic)
-        if result.get("status") == "running" and not result.get("pending_questions"):
-            result["status"] = "completed"
 
         return result
 
@@ -81,10 +71,10 @@ class DiagnosisOrchestrator:
         user_response,
     ) -> dict:
         """
-        Resume an existing diagnosis session with user input.
+        Resume diagnosis with user input.
         """
 
-        state = dict(state)  # defensive copy
+        state = dict(state)
 
         state["user_response"] = user_response
         state.setdefault("messages", []).append({
@@ -92,14 +82,11 @@ class DiagnosisOrchestrator:
             "content": str(user_response),
         })
 
-        log.info("Resuming diagnosis session")
+        log.info("Resuming diagnosis workflow")
 
         result = self.app.invoke(
             state,
             config={"recursion_limit": 50},
         )
-
-        if result.get("status") == "running" and not result.get("pending_questions"):
-            result["status"] = "completed"
 
         return result
