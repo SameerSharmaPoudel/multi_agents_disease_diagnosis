@@ -36,6 +36,9 @@ if "status" not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "last_response" not in st.session_state:
+    st.session_state.last_response = None
+
 # -------------------------------------------------
 # Helper: render chat history
 # -------------------------------------------------
@@ -62,12 +65,14 @@ if st.session_state.session_id is None:
             with st.spinner("Analyzing symptoms..."):
                 response = start_diagnosis(initial_text)
 
+            # 🔐 Persist backend response
+            st.session_state.last_response = response
             st.session_state.session_id = response["session_id"]
             st.session_state.status = response["status"]
 
             st.session_state.messages.append({
                 "role": "assistant",
-                "content": response["message"],
+                "content": response.get("message", ""),
             })
 
             st.rerun()
@@ -79,6 +84,7 @@ else:
     render_chat()
 
     status = st.session_state.status
+    response = st.session_state.last_response  # 🔑 ALWAYS defined
 
     if status == "awaiting_user_input":
         user_answer = st.chat_input("Your answer")
@@ -95,11 +101,13 @@ else:
                     user_answer,
                 )
 
+            # 🔐 Persist backend response
+            st.session_state.last_response = response
             st.session_state.status = response["status"]
 
             st.session_state.messages.append({
                 "role": "assistant",
-                "content": response["message"],
+                "content": response.get("message", ""),
             })
 
             st.rerun()
@@ -107,8 +115,15 @@ else:
     elif status == "completed":
         st.success("Diagnosis completed")
 
-        if response.get("data"):
+        data = response.get("data") if response else None
+        if data:
             with st.expander("📊 Diagnosis Details"):
-                st.json(response["data"])
+                st.json(data)
 
-        st.button("Start New Diagnosis", on_click=lambda: st.session_state.clear())
+        if st.button("Start New Diagnosis"):
+            st.session_state.clear()
+            st.rerun()
+
+    else:
+        st.error("Unexpected state from backend")
+        st.write(response)

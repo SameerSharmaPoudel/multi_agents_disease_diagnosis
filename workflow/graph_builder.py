@@ -14,15 +14,13 @@ log = get_logger("GraphBuilder")
 
 class GraphBuilder:
     """
-    Correct, invariant-safe LangGraph pipeline.
+    Invariant-safe LangGraph pipeline.
 
     HARD GUARANTEES:
-    - SymptomCollector ALWAYS runs on first visit
-    - Analyzer ALWAYS runs after symptoms exist
-    - Diagnoser NEVER finalizes without symptoms
     - status is ALWAYS one of:
         - awaiting_user_input
         - completed
+    - Graph NEVER terminates without status
     """
 
     def __init__(self, llm, rag_vectorstore=None):
@@ -57,8 +55,11 @@ class GraphBuilder:
         graph.add_node("explainer", self._finalize_and_explain)
         graph.add_node("memory_persist", self.memory.run)
 
+        # 🔒 TERMINAL GUARD (NEW)
+        graph.add_node("ensure_terminal_status", self._ensure_terminal_status)
+
         # =====================================================
-        # 🔑 CRITICAL: branch immediately at START
+        # START branching
         # =====================================================
         graph.add_conditional_edges(
             START,
@@ -85,55 +86,66 @@ class GraphBuilder:
         # -----------------
         graph.add_edge("analyzer", "diagnoser")
 
+        # -----------------
+        # Branch after diagnoser
+        # -----------------
         graph.add_conditional_edges(
             "diagnoser",
             self._branch_after_diagnoser,
             {
-                "pause": END,
+                "pause": "ensure_terminal_status",
                 "explain": "explainer",
             },
         )
 
         graph.add_edge("explainer", "memory_persist")
-        graph.add_edge("memory_persist", END)
+        graph.add_edge("memory_persist", "ensure_terminal_status")
+
+        # 🔚 ONLY exit point
+        graph.add_edge("ensure_terminal_status", END)
 
         return graph.compile()
 
     # ---------------------------------------------------------
-    # 🔒 HARD INVARIANT ENFORCEMENT
+    # Branching (NO invariants here)
     # ---------------------------------------------------------
 
     def _branch_after_diagnoser(self, state: dict) -> str:
         """
-        Decide whether to pause or explain.
-        GUARANTEES terminal status.
+        Routing only.
+        NO guarantees here.
         """
 
-        symptoms = state.get("symptoms") or {}
-        pending = state.get("pending_questions")
-
-        # 🔴 Case 1: No symptoms extracted at all
-        if not symptoms:
-            state["pending_questions"] = ["Please describe your symptoms."]
-            state["status"] = "awaiting_user_input"
+        if state.get("pending_questions"):
             return "pause"
 
-        # 🟡 Case 2: Diagnoser explicitly requests more info
-        if pending:
-            state["status"] = "awaiting_user_input"
-            return "pause"
-
-        # 🟢 Case 3: Safe to explain
         return "explain"
+
+    # ---------------------------------------------------------
+    # 🔒 TERMINAL GUARD (THE FIX)
+    # ---------------------------------------------------------
+
+    def _ensure_terminal_status(self, state: dict) -> dict:
+        """
+        Enforces terminal invariants.
+        ALWAYS runs before END.
+        """
+
+        if state.get("status") is None:
+            if state.get("pending_questions"):
+                state["status"] = "awaiting_user_input"
+            else:
+                state["status"] = "completed"
+
+        # Optional safety logging
+        log.info("Terminal status enforced: %s", state["status"])
+        return state
 
     # ---------------------------------------------------------
     # Finalization
     # ---------------------------------------------------------
 
     def _finalize_and_explain(self, state: dict) -> dict:
-        """
-        Explainer + terminal normalization.
-        """
         state = self.explainer.run(state)
         state["status"] = "completed"
         return state
@@ -155,27 +167,30 @@ class GraphBuilder:
         pending = state.get("pending_questions", [])
         symptoms = dict(state.get("symptoms", {}) or {})
 
-        if isinstance(resp, dict):
-            symptoms.update(resp)
+        if not pending:
+            return state
 
-        elif pending:
-            q = pending[0]
-            key = (
-                q.replace("Do you have ", "")
-                .replace("?", "")
-                .strip()
-                .replace(" ", "_")
-                .lower()
-            )
-            val = str(resp).strip().lower()
-            symptoms[key] = (
-                "yes" if val.startswith("y")
-                else "no" if val.startswith("n")
-                else val
-            )
+        q = pending[0]
+        key = (
+            q.replace("Do you have ", "")
+            .replace("?", "")
+            .strip()
+            .replace(" ", "_")
+            .lower()
+        )
+
+        val = str(resp).strip().lower()
+
+        if val.startswith("y"):
+            symptoms[key] = "yes"
+        elif val.startswith("n"):
+            symptoms[key] = "no"
+        else:
+            symptoms[key] = val
 
         state["symptoms"] = symptoms
         state["pending_questions"] = []
+        state["user_response"] = None
 
         log.info("Updated symptoms: %s", symptoms)
         return state
