@@ -38,13 +38,7 @@ orchestrator = DiagnosisOrchestrator()
 # ------------------------------------------------------------------
 
 def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
-    """
-    Translate internal agent state → API-safe response.
-    """
-
     status = state.get("status", "running")
-
-    # Default fallback 
     message = "Diagnosis in progress."
 
     if status == "awaiting_user_input":
@@ -52,10 +46,7 @@ def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
         message = pending[0] if pending else "Additional information required."
 
     elif status == "completed":
-        message = state.get(
-            "explainer_output",
-            "Diagnosis completed."
-        )
+        message = state.get("explainer_output", "Diagnosis completed.")
 
     return DiagnosisResponse(
         session_id=session_id,
@@ -76,8 +67,28 @@ def _map_state_to_response(session_id: UUID, state: dict) -> DiagnosisResponse:
 async def start_diagnosis(request: StartDiagnosisRequest):
     """
     Start a new diagnosis session.
-    Graph guarantees a terminal status.
     """
+
+    # 🟢 STEP 1 — prove what FastAPI ACTUALLY receives
+    log.warning(
+        "START REQUEST | patient_id=%r | symptoms=%r",
+        request.patient_id,
+        request.initial_symptoms,
+    )
+
+    # 🔴 FIX 1 — guard against UI bugs / free-text IDs
+    if request.patient_id is not None and not isinstance(request.patient_id, str):
+        raise HTTPException(
+            status_code=400,
+            detail="patient_id must be a string UUID",
+        )
+
+    # 🔴 FIX 2 — OPTIONAL but STRONGLY RECOMMENDED
+    # If your UI has a "returning patient" toggle, enforce it here
+    if request.patient_id is None:
+        log.info("New patient visit (no patient_id provided)")
+    else:
+        log.info("Return visit detected for patient_id=%s", request.patient_id)
 
     session_id = uuid4()
     log.info("Starting new diagnosis session %s", session_id)
@@ -85,7 +96,7 @@ async def start_diagnosis(request: StartDiagnosisRequest):
     try:
         state = orchestrator.start_session(
             user_initial_text=request.initial_symptoms,
-            patient_id=request.patient_id,  # optional, NOT session_id
+            patient_id=request.patient_id,  # 🔒 structural identity only
         )
     except Exception as e:
         log.exception("Failed to start diagnosis")
@@ -112,7 +123,6 @@ async def start_diagnosis(request: StartDiagnosisRequest):
     return _map_state_to_response(session_id, state)
 
 
-
 @app.post("/diagnosis/continue", response_model=DiagnosisResponse)
 async def continue_diagnosis(request: ContinueDiagnosisRequest):
     """
@@ -126,7 +136,11 @@ async def continue_diagnosis(request: ContinueDiagnosisRequest):
     except KeyError:
         raise HTTPException(status_code=404, detail="Session not found")
 
-    log.info("Continuing diagnosis session %s", session_id)
+    log.info(
+        "Continuing session %s | patient_id=%r",
+        session_id,
+        state.get("patient_id"),
+    )
 
     try:
         updated_state = orchestrator.resume_session_with_answer(

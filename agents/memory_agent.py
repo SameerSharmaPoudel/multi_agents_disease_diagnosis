@@ -89,6 +89,10 @@ class MemoryAgent:
     # PATIENT ID MANAGEMENT
     # ----------------------------------------------------
     def ensure_patient(self, state: Dict[str, Any]) -> str:
+        # log.warning(
+        # "ENSURE_PATIENT | incoming patient_id = %r",
+        # state.get("patient_id"),
+        # )
         pid = state.get("patient_id")
         if pid:
             log.info("Using existing patient_id=%s", pid)
@@ -274,6 +278,13 @@ class MemoryAgent:
     # MAIN ENTRYPOINT
     # ----------------------------------------------------
     def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+
+        # log.warning(
+        # "MEMORY ENTRY | state.patient_id = %r | state keys = %s",
+        # state.get("patient_id"),
+        # list(state.keys()),
+        # )
+
         pid = self.ensure_patient(state)
         history = self.load_patient_history(pid)
 

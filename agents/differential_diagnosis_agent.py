@@ -11,6 +11,7 @@ class DifferentialDiagnosisAgent:
     - NO status control (GraphBuilder decides)
     - YES/NO answers are both treated as resolved
     - pending_questions only contains truly unknown symptoms
+    - FINALIZES diagnosis exactly once
     """
 
     def __init__(
@@ -98,6 +99,10 @@ class DifferentialDiagnosisAgent:
     # MAIN RUN
     # -----------------------------------------------------------
     def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        # 🔒 FINALIZATION GUARD (prevents duplicates)
+        if state.get("diagnosis_finalized"):
+            return state
+
         candidates = state.get("candidates", []) or []
         symptoms = state.get("symptoms", {}) or {}
 
@@ -130,15 +135,21 @@ class DifferentialDiagnosisAgent:
         # Rank candidates
         # -------------------------
         ranked = self._hybrid_rank(candidates, history_index)
+
         state["ranked_candidates"] = ranked
         state["top_likelihood"] = ranked[0]["likelihood"] if ranked else 0.0
         state["uncertainty"] = 1.0 - state["top_likelihood"]
 
         # -------------------------
-        # Confident → no questions
+        # CONFIDENT → FINALIZE
         # -------------------------
         if ranked and state["top_likelihood"] >= self.confidence_threshold:
             state["pending_questions"] = []
+
+            state["diagnosis_result"] = ranked
+            state["confidence"] = ranked[0]["likelihood"]
+            state["diagnosis_finalized"] = True
+
             return state
 
         # -------------------------
@@ -146,15 +157,24 @@ class DifferentialDiagnosisAgent:
         # -------------------------
         missing = state.get("missing_symptoms", []) or []
 
-        # 🔑 YES and NO both count as resolved
         resolved = set(symptoms.keys())
-
         unknown = [s for s in missing if s not in resolved]
 
+        # -------------------------
+        # NO UNKNOWN → FINALIZE
+        # -------------------------
         if not unknown:
             state["pending_questions"] = []
+
+            state["diagnosis_result"] = ranked
+            state["confidence"] = ranked[0]["likelihood"] if ranked else 0.0
+            state["diagnosis_finalized"] = True
+
             return state
 
+        # -------------------------
+        # Ask discriminating questions
+        # -------------------------
         batch_size = min(3, len(unknown))
 
         discriminators = self._select_discriminators(

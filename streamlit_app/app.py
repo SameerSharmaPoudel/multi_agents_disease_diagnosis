@@ -22,7 +22,7 @@ if frontend_settings.app_env == "test":
 # UI Header
 # -------------------------------------------------
 st.title("🩺 Multi-Agent Disease Diagnosis Assistant")
-st.caption("Powered by a multi-agent AI system")
+st.caption("Responses generated aren't to be taken as authentic medical advice !")
 
 # -------------------------------------------------
 # Session state initialization
@@ -53,6 +53,12 @@ def render_chat():
 if st.session_state.session_id is None:
     st.subheader("Describe your symptoms")
 
+    # 🔹 OPTIONAL patient identifier
+    patient_id = st.text_input(
+        "Patient ID (optional – leave empty if this is your first visit)",
+        placeholder="e.g. 9db81563-234d-4ec0-aef2-6c4e30a09e03",
+    )
+
     initial_text = st.text_area(
         "Initial symptoms",
         placeholder="E.g. fever, cough, fatigue for 3 days...",
@@ -63,7 +69,10 @@ if st.session_state.session_id is None:
             st.warning("Please enter your symptoms.")
         else:
             with st.spinner("Analyzing symptoms..."):
-                response = start_diagnosis(initial_text)
+                response = start_diagnosis(
+                    initial_symptoms=initial_text,
+                    patient_id=patient_id.strip() or None,  # 🔐 critical line
+                )
 
             # 🔐 Persist backend response
             st.session_state.last_response = response
