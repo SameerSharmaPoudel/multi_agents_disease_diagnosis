@@ -45,11 +45,14 @@ class DiagnosisOrchestrator:
         """
         Start a new diagnosis workflow.
         """
-
         state = {
             "messages": [{"role": "user", "content": user_initial_text}],
             "symptoms": {},
             "pending_questions": [],
+            # RESET diagnosis flags for new session
+            "diagnosis_finalized": False,
+            "diagnosis_result": None,
+            "confidence": 0.0,
         }
 
         if patient_id:
@@ -73,9 +76,16 @@ class DiagnosisOrchestrator:
         """
         Resume diagnosis with user input.
         """
-
-        state = dict(state)
-
+        state = dict(state)  # Create a copy
+        
+        # IMPORTANT: Reset diagnosis flags for continuation
+        # (unless we're truly continuing a multi-turn diagnosis)
+        if state.get("status") != "awaiting_user_input":
+            # If not actively in a diagnostic conversation, reset
+            state["diagnosis_finalized"] = False
+            state["diagnosis_result"] = None
+            state["confidence"] = 0.0
+        
         state["user_response"] = user_response
         state.setdefault("messages", []).append({
             "role": "user",

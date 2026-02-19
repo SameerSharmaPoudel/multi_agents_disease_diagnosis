@@ -86,6 +86,60 @@ class SymptomAnalyzerAgent:
 
         return relevant
 
+    def _deduplicate_candidates(self, candidates):
+        """
+        Remove duplicate disease entries while preserving distinct diseases.
+        A duplicate is defined as the same disease with very similar symptom matches.
+        """
+        if not candidates:
+            return []
+        
+        # Group by disease name
+        disease_groups = {}
+        for c in candidates:
+            disease = c["disease"]
+            if disease not in disease_groups:
+                disease_groups[disease] = []
+            disease_groups[disease].append(c)
+        
+        # For each disease group, select the best representative
+        deduplicated = []
+        for disease, group in disease_groups.items():
+            if len(group) == 1:
+                # Only one entry for this disease, keep it
+                deduplicated.append(group[0])
+            else:
+                # Multiple entries for same disease - need to deduplicate
+                # Strategy: Keep the most representative one (highest jaccard score)
+                group.sort(key=lambda x: x.get("jaccard", 0), reverse=True)
+                
+                # Check if entries are truly duplicates or just variants
+                top_entry = group[0]
+                matched_symptoms_top = set(top_entry.get("matched_symptoms", []))
+                
+                # Look for significantly different variants to keep
+                variants_to_keep = [top_entry]  # Always keep the best match
+                
+                for other_entry in group[1:]:
+                    matched_symptoms_other = set(other_entry.get("matched_symptoms", []))
+                    
+                    # Calculate symptom overlap
+                    overlap = len(matched_symptoms_top & matched_symptoms_other)
+                    total_unique = len(matched_symptoms_top | matched_symptoms_other)
+                    
+                    if total_unique > 0:
+                        similarity = overlap / total_unique
+                        # If less than 80% similar, keep as a variant
+                        if similarity < 0.8:
+                            variants_to_keep.append(other_entry)
+                        # Otherwise, it's a duplicate - skip it
+                
+                deduplicated.extend(variants_to_keep)
+        
+        # Sort all by jaccard score
+        deduplicated.sort(key=lambda x: x.get("jaccard", 0), reverse=True)
+        return deduplicated
+
     # -------------------------------------------------------------
     # MAIN EXECUTION
     # -------------------------------------------------------------
@@ -169,6 +223,30 @@ class SymptomAnalyzerAgent:
             })
             missing_union |= set(r.get("missing_symptoms", []) or [])
 
+        # === IMPROVED DEDUPLICATION: Keep distinct diseases, remove true duplicates ===
+        original_count = len(candidates)
+        candidates = self._deduplicate_candidates(candidates)
+        deduplicated_count = len(candidates)
+        
+        # Debug log for deduplication
+        state.setdefault("debug", []).append({
+            "agent": "analyzer_dedup",
+            "original_count": original_count,
+            "deduplicated_count": deduplicated_count,
+            "unique_diseases": [c["disease"] for c in candidates],
+            "message": f"Deduplicated {original_count} -> {deduplicated_count} candidates"
+        })
+        log.info("Candidate deduplication: %d -> %d candidates", 
+                original_count, deduplicated_count)
+        
+        # If we still have too few candidates after deduplication, 
+        # check if retriever is returning diverse results
+        if deduplicated_count < 3 and original_count >= 5:
+            log.warning(
+                "Low diversity in retrieved diseases. "
+                "Check knowledge base for disease variety."
+            )
+
         state["candidates"] = candidates
         state["missing_symptoms"] = sorted(list(missing_union))
 
@@ -178,7 +256,9 @@ class SymptomAnalyzerAgent:
                 j = c.get("jaccard")
                 return f"{float(j):.2f}" if j is not None else "NA"
 
-            top_line = ", ".join([f"{c['disease']} (J={_fmt_j(c)})" for c in candidates[:3]])
+            # Show top 5 candidates for better visibility
+            display_count = min(5, len(candidates))
+            top_line = ", ".join([f"{c['disease']} (J={_fmt_j(c)})" for c in candidates[:display_count]])
         else:
             top_line = "no candidates yet"
 
