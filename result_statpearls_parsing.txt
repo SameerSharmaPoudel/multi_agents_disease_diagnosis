@@ -1,0 +1,509 @@
+==========================================================================================
+StatPearls
+==========================================================================================
+
+Parsed 9619 documents
+
+Validation passed : 9619
+Validation failed : 0
+
+========== Statistics ==========
+
+Documents : 9619
+Sections  : 106708
+Average sections/document : 11.09
+Unique diseases : 9124
+Average section length : 1299 characters
+
+========== Section Distribution ==========
+
+Introduction                        8250
+Enhancing Healthcare Team Outcomes  7320
+Continuing Education Activity       6396
+Complications                       5295
+Evaluation                          4734
+Treatment / Management              4628
+History and Physical                4623
+Epidemiology                        4614
+Differential Diagnosis              4609
+Etiology                            4571
+Pathophysiology                     4509
+Prognosis                           4257
+Clinical Significance               3917
+Deterrence and Patient Education    3886
+Indications                         2130
+Pearls and Other Issues             2105
+Contraindications                   1953
+Histopathology                      1884
+Consultations                       1285
+Issues of Concern                   1262
+Technique or Treatment              1141
+Anatomy and Physiology              1055
+Equipment                           1023
+Preparation                         974
+Monitoring                          932
+Mechanism of Action                 876
+Adverse Effects                     875
+Personnel                           874
+Administration                      873
+Structure and Function              836
+Toxicity                            833
+Function                            833
+Embryology                          772
+Surgical Considerations             735
+Blood Supply and Lymphatics         734
+Nursing, Allied Health, and Interprofessional Team Interventions 679
+Nerves                              653
+Postoperative and Rehabilitation Care 629
+Physiologic Variants                581
+Other Issues                        525
+Muscles                             523
+Staging                             482
+Definition/Introduction             418
+Nursing, Allied Health, and Interprofessional Team Monitoring 384
+Mechanism                           331
+Cellular Level                      304
+Pertinent Studies and Ongoing Trials 294
+Toxicokinetics                      278
+Development                         242
+Toxicity and Adverse Effect Management 184
+Treatment Planning                  183
+Related Testing                     179
+Organ Systems Involved              172
+Interfering Factors                 156
+Surgical Oncology                   146
+Molecular Level                     138
+Causes                              135
+Radiation Oncology                  134
+Medical Oncology                    124
+Learning Outcome                    117
+Medical Management                  117
+Nursing Management                  117
+Nursing Diagnosis                   116
+Assessment                          116
+Risk Factors                        115
+Coordination of Care                114
+Testing                             103
+Health Teaching and Health Promotion 103
+Fundamentals                        100
+Outcome Identification              99
+When To Seek Help                   98
+Procedures                          93
+Normal and Critical Findings        89
+Discharge Planning                  85
+Patient Safety and Education        82
+Pearls and Other issues             80
+Specimen Requirements and Procedure 76
+Structure                           76
+Results, Reporting, and Critical Findings 73
+Quality Control and Lab Safety      70
+Potential Diagnosis                 70
+Testing Procedures                  66
+Histochemistry and Cytochemistry    62
+Microscopy, Light                   62
+Tissue Preparation                  59
+Diagnostic Tests                    56
+Microscopy, Electron                56
+Specimen Collection                 55
+Cellular                            55
+Risk Management                     52
+Etiology and Epidemiology           48
+Curriculum Development              47
+Biochemical                         30
+Procedural Skills Assessment        29
+Summary / Explanation               27
+Continuing Education                26
+Plain Films                         26
+Computed Tomography                 26
+Magnetic Resonance                  26
+Evidence-Based Issues               25
+Anatomy                             24
+Ultrasonography                     24
+Nuclear Medicine                    23
+Clinicopathologic Correlations      19
+Medical Decision Making and Leadership Development 19
+Angiography                         18
+Clinical Pathology                  17
+Anatomical Pathology                16
+Clinical Clerkships                 16
+Patient Positioning                 14
+Mechanisms                          14
+Morphology                          13
+Biochemical and Genetic Pathology   13
+Diagnosis                           8
+Management                          8
+Discussion                          8
+Pearls of Wisdom                    8
+Case Presentation                   7
+Initial Evaluation                  7
+Confirmatory Evaluation             7
+Acknowledgments                     3
+Classification                      2
+Advantages and Disadvantages        2
+Technique                           2
+Anterior Segment Optical Coherence Tomography 2
+Instruments and Materials           1
+Properties                          1
+Fluorescent and Thermal Imaging     1
+Questions                           1
+
+========== Metadata ==========
+
+source_file               9619
+authors                   9619
+num_sections              9619
+
+========== Duplicate IDs ==========
+
+0
+
+========== Longest Document ==========
+
+statpearls_article-127854
+Recent changes in trends of opioid overdose deaths in North America.
+18
+188114
+
+
+================================================================================
+statpearls_article-100024
+================================================================================
+Disease : Thrombolysis in Myocardial Infarction (TIMI) Trial, Phase I: A comparison between intravenous tissue plasminogen activator and intravenous streptokinase. Clinical findings through hospital discharge.
+Source  : StatPearls
+Title   : Thrombolysis in Myocardial Infarction (TIMI) Trial, Phase I: A comparison between intravenous tissue plasminogen activator and intravenous streptokinase. Clinical findings through hospital discharge.
+Disease ID : None
+
+Metadata
+--------------------------------------------------------------------------------
+source_file: D:\ml_projects\multiagents_disease_diagnosis\data\vector_rag\statpearls\article-100024.nxml
+authors: ['Yamama Hafeez', 'Vincent Varghese']
+num_sections: 14
+
+Sections
+--------------------------------------------------------------------------------
+
+Continuing Education Activity
+-----------------------------
+Chronic total occlusion (CTO) lesions are diagnosed in patients who are undergoing coronary angiography as part of the evaluation of ischemic heart disease, cardiomyopathy, or valvular heart disease. CTO revascularization has not shown benefit in rates of all-cause mortality, myocardial infarction, 
+
+
+Introduction
+------------
+A coronary chronic total occlusion (CTO) is defined as 100% occlusion of a coronary artery for a duration of greater than or equal to 3 months based on angiographic evidence. The TIMI (thrombolysis in myocardial infarction) flow grading system is a scoring classification from 0-3 referring to the le
+
+
+Etiology
+--------
+Risk factors for CTO lesion in patients are as below Known coronary artery disease or history of myocardial infarction Excessive tobacco use High LDL cholesterol, low HDL cholesterol Diabetes Sedentary lifestyle Hypertension Family history of premature disease End-stage kidney disease Obesity Postme
+
+
+Epidemiology
+------------
+CTO lesions are found in approximately one-quarter to one-third of patients undergoing diagnostic coronary angiography. The true prevalence, however, in the general population is unknown due to a subset of patients with CTO lesions being asymptomatic or minimally symptomatic and never undergoing dia
+
+
+Pathophysiology
+---------------
+Pathogenesis of coronary artery disease, which can progress to CTO lesions, has multiple contributing factors, which include upregulation of the immunologic and inflammatory markers (cytokines, leukocytes, high sensitivity C-reactive protein), endothelial dysfunction, and cholesterol accumulation. M
+
+
+Histopathology
+--------------
+Histopathological attributes of a CTO lesion commonly consist of calcium, lipids (both intracellular and extracellular), smooth muscle cells, an extracellular matrix, and neovascularization. Occlusions typically have a dense concentration of collagen-rich fibrous tissue at the proximal and distal en
+
+
+History and Physical
+--------------------
+CTO lesions are diagnosed in patients who are undergoing coronary angiography as part of the evaluation of ischemic heart disease, cardiomyopathy, or valvular heart disease. Patients with ischemic heart disease generally present with typical chest pain symptoms (stable or unstable angina), atypical 
+
+
+Evaluation
+----------
+A significant component of an assessment for a patient who presents with signs and symptoms of ischemic heart disease is history and physical exam. These should include vital signs (respiratory rate, blood pressure, temperature, and heart rate), review of the patient's medication list, and an electr
+
+
+Treatment / Management
+----------------------
+CTO revascularization has not shown to benefit rates of all-cause mortality, myocardial infarction, stroke, or repeat revascularization; however, it has shown to significantly improve patients' quality of life and reduce symptoms of angina. In patients who meet the indication for a CTO PCI, informed
+
+
+Differential Diagnosis
+----------------------
+STEMI NSTEMI Pulmonary embolism Aortic dissection Pneumothorax Esophageal rupture Perforating peptic ulcer disease
+
+
+Prognosis
+---------
+In addition to causing symptoms, CTOs have correlations with a worse overall prognosis, with higher rates of death and non-fatal adverse cardiovascular events in several populations. Patients with CTOs tend to be older and have more comorbidities and more significant impairment of left ventricular f
+
+
+Complications
+-------------
+Percutaneous coronary intervention (PCI) of a CTO lesion on average requires more fluoroscopy time, higher contrast volume, and carries a lower success rate compared to non-CTO PCI’s. CTO PCIs also have a higher complication rate than non-CTO PCIs with major complications, including myocardial infar
+
+
+Deterrence and Patient Education
+--------------------------------
+Patient education should include resources such as videos and pamphlets. Teaching should focus on risk factor reduction and lifestyle modification such as smoking cessation, blood pressure management based on guidelines, screening for new-onset diabetes, and exercise as tolerated.
+
+
+Enhancing Healthcare Team Outcomes
+----------------------------------
+Educating patients at risk for coronary artery disease and making a closed-loop communication between them and their cardiologist for primary and secondary prevention can further improve the management of patients at risk of these CTO lesions. Collaboration with shared decision making (between prima
+
+
+========== Random Documents ==========
+
+
+
+================================================================================
+statpearls_article-102980
+================================================================================
+Disease : Acromioclavicular joint dislocations: incidence, injury profile, and patient characteristics from a prospective case series.
+Source  : StatPearls
+Title   : Acromioclavicular joint dislocations: incidence, injury profile, and patient characteristics from a prospective case series.
+Disease ID : None
+
+Metadata
+--------------------------------------------------------------------------------
+source_file: D:\ml_projects\multiagents_disease_diagnosis\data\vector_rag\statpearls\article-102980.nxml
+authors: ['Michael Downing', 'Bruno Bordoni']
+num_sections: 13
+
+Sections
+--------------------------------------------------------------------------------
+
+Continuing Education Activity
+-----------------------------
+Acromioclavicular (AC) and sternoclavicular (SC) joint injuries are most commonly seen in a contact sport setting (such as football, rugby, and ice hockey) or traumatic setting. The severity of these injuries can vary, the worst of which require surgical intervention. For those that do not require s
+
+
+Introduction
+------------
+Acromioclavicular (AC) joint injuries are one of the more common injuries of the shoulder. A recent study by Nordin et al. found that AC Joint injuries have an incidence of 2 in every 10,000 people ages 18 to 75. Most of these injuries are in young men, with more severe AC joint injuries occurring i
+
+
+Anatomy and Physiology
+----------------------
+The AC joint is just one of the complex structures that makes up the shoulder girdle. The acromion, which originates from the spine of the scapula, meets with the lateral aspect of the clavicle to form the AC joint. The clavicle and the acromion of the scapula have a flat articular surface, with an 
+
+
+Indications
+-----------
+Muscle energy techniques (METs) are attributed to an American osteopath, Fred Mitchell Senior. Employing complex neurological mechanisms, including the neuromuscular spindles and the Golgi tendon organs, following guided muscle contractions, a shortened muscle can be stretched until it reaches a new
+
+
+Contraindications
+-----------------
+Muscle energy is a very safe technique, and it can be utilized outside of medical emergencies or very severe injuries (such as the following examples): Broken bone Ruptured ligament/tendon/muscle Joint infection No somatic dysfunction present Patient refusal
+
+
+Equipment
+---------
+Osteopathic manipulative treatment table Stool
+
+
+Preparation
+-----------
+Evaluating the AC and SC joints is critical before beginning treatment. Visual assessment (bruising, erythema, edema), pain scale, the strength of surrounding musculature, and range of motion of the AC and SC joints should all be accounted for both before and after treatment. The following will expl
+
+
+Technique or Treatment
+----------------------
+Have the patient in a seated position, with the arm in slight abduction and elbow slightly flexed While one hand monitors AC joint, use the other to "shake hands" with the patient and guide the AC joint into external rotation until the restrictive barrier is met The patient internally rotates their 
+
+
+Complications
+-------------
+As one study states, significant adverse events are not well described or correlated with manual therapy use. For instance, there is no correlation to a musculoskeletal treatment with resulting gastrointestinal complications that we are aware of, although they rarely coincidentally occur. However, m
+
+
+Clinical Significance
+---------------------
+Osteopathic manipulative treatment is an underutilized non-surgical alternative that can provide significant benefits to patients with somatic dysfunctions of the AC and SC Joints. As mentioned before, non-surgical approaches are best for AC injuries type I and II, and there is still dispute over ty
+
+
+Enhancing Healthcare Team Outcomes
+----------------------------------
+Interprofessional communication is something that lacks in terms of osteopathic manipulative treatment. As an osteopathic treatment, only DOs are familiar with the process (unless an MD has taken a separate course). With a large number of patient complaints stemming from the musculoskeletal origin, 
+
+
+Nursing, Allied Health, and Interprofessional Team Interventions
+----------------------------------------------------------------
+Interprofessional education of osteopathic manipulative treatment and awareness of which physicians in their area utilize this treatment modality is critical. These are simple techniques that can be taught and utilized by health care professionals.
+
+
+Nursing, Allied Health, and Interprofessional Team Monitoring
+-------------------------------------------------------------
+Communication about patient progression is essential. Treatment by an osteopathic physician requires continual monitoring and progress communicated to the patient's primary physician or orthopedist.
+
+
+
+================================================================================
+statpearls_nurse-article-19222
+================================================================================
+Disease : Global elimination of cervical cancer as a public health problem.
+Source  : StatPearls
+Title   : Global elimination of cervical cancer as a public health problem.
+Disease ID : None
+
+Metadata
+--------------------------------------------------------------------------------
+source_file: D:\ml_projects\multiagents_disease_diagnosis\data\vector_rag\statpearls\nurse-article-19222.nxml
+authors: ['Josephine R. Fowler', 'Elizabeth V. Maani', 'Charles J. Dunton', 'David P. Gasalberti', 'Brian W. Jack', 'Jennifer L. Miller']
+num_sections: 14
+
+Sections
+--------------------------------------------------------------------------------
+
+Learning Outcome
+----------------
+Identify the cause of cervical cancer Explain the current cervical cancer screening and vaccination recommendations Discuss disparities in cervical cancer screening and diagnosis among various populations Identify potential nursing diagnoses for people with cervical cancer Analyze the role of the nu
+
+
+Introduction
+------------
+Cervical cancer continues to be listed among the top gynecologic cancers worldwide. According to current data, it is ranked fourteenth among all cancers and fourth-ranked cancer among women worldwide. Targeted education, screening, and intervention can reduce the burden of disease. Like many disease
+
+
+Nursing Diagnosis
+-----------------
+People with cervical cancer may experience physical, emotional, and spiritual symptoms. Cancer treatments such as radiation and chemotherapy may cause side effects, including nausea, vomiting, pain, dysuria, diarrhea, fatigue, neutropenia, and more. Examples of Nursing Diagnoses that may be utilized
+
+
+Causes
+------
+Cervical cancer is caused by the Human papillomavirus (HPV). Current literature reports HPV is found in the majority of sexually active people at some point during their life. There are more than 130 types of known HPV, with 20 HPV types identified as cancer-related. HPV-related cervical dysplasia r
+
+
+Risk Factors
+------------
+Risk factors for HPV and cervical cancer include age at first intercourse, multiple sexual partners, smoking, herpes simplex, HIV, co-infection with other genital infections, and oral contraceptive use. HPV is transmitted by skin-to-skin contact, including during sexual intercourse, hand-to-genital 
+
+
+Assessment
+----------
+Patients with cervical cancer are usually asymptomatic in the early stages. The history and physical involve a thorough sexual history including first age of intercourse, postcoital bleeding, and if there is pain during intercourse. Other pertinent information to gather includes previous sexually tr
+
+
+Evaluation
+----------
+According to the United States Preventative Services Task Force (USPTF), Pap screening is recommended beginning at age 21 years of age. HPV testing begins at age 30 in conjunction with Pap smear cytology. Screening is recommended every three years for women with continued normal screening and those 
+
+
+Medical Management
+------------------
+Pre-cancerous lesions are managed conservatively for those women younger than 25 years. The majority of abnormal findings in women younger than 25 are low-risk cervical dysplasia and will resolve spontaneously. Colposcopy evaluates persistent, abnormal cytology or lesions suspected to be greater tha
+
+
+Nursing Management
+------------------
+Oncology nurses are important in the patient's health care team, providing support and education and connecting patients with resources. Nurses are involved in the care of the patient in many different settings: Gynecological oncology Radiation oncology Medical oncology Infusion centers Inpatient an
+
+
+When To Seek Help
+-----------------
+Patients should be advised to seek help immediately for heavy bleeding, feelings of dizziness or fainting, uncontrolled pain, fevers, or new swelling of the extremities.
+
+
+Coordination of Care
+--------------------
+Nurses regularly collaborate with primary gynecologists and oncologists, pharmacists, radiation therapists, social workers, chaplains, and other specialists to ensure the patient's holistic needs are met during cancer treatment and survivorship. Oncology nurse navigators can positively affect patien
+
+
+Health Teaching and Health Promotion
+------------------------------------
+Both traditional patient education and innovative methods can increase awareness of cervical cancer and the need for prevention and early screening. Culturally sensitive information, appropriate language to reach low health literacy populations and targeted efforts to women not yet sexually active a
+
+
+Discharge Planning
+------------------
+Most cervical cancer treatments can be received as outpatients. Patients on active treatment should be educated about the side effects and symptoms to report. For instance, patients receiving chemotherapy should be educated about the potential for infection, when to report signs to the provider, and
+
+
+Pearls and Other issues
+-----------------------
+Cervical cancer is the four ranked cancer among women worldwide. Cervical cancer is caused by the human papillomavirus (HPV), which is a sexually transmitted viral infection found in most adults during their lifetime. Primary and secondary prevention is key with cervical cancer, including HPV vaccin
+
+
+
+================================================================================
+statpearls_article-21612
+================================================================================
+Disease : The molecular genetic background of familial hypercholesterolemia: data from the Slovak nation-wide survey.
+Source  : StatPearls
+Title   : The molecular genetic background of familial hypercholesterolemia: data from the Slovak nation-wide survey.
+Disease ID : None
+
+Metadata
+--------------------------------------------------------------------------------
+source_file: D:\ml_projects\multiagents_disease_diagnosis\data\vector_rag\statpearls\article-21612.nxml
+authors: ['Harsha Karanchi', 'Kathleen Wyne']
+num_sections: 13
+
+Sections
+--------------------------------------------------------------------------------
+
+Introduction
+------------
+Familial hypercholesterolemia (FH) is an autosomal dominant disorder of lipid metabolism. It is characterized by very high low-density lipoprotein cholesterol (LDL-C) levels due to a gene mutation causing premature coronary heart disease. Homozygous individuals typically acquired disease in childhoo
+
+
+Etiology
+--------
+Genetic disorders with high LDL-C are most commonly caused by autosomal dominant conditions and rarely inherited as a recessive trait. Mutations in the LDL receptor (LDLR; “classic FH”) cause 80% to 90% of cases of clinical FH and have an autosomal dominant inheritance. Rarely, mutations in APOB and
+
+
+Epidemiology
+------------
+Heterozygous FH (HeFH) is the most common monogenic, autosomal dominant disorder in humans. It occurs in approximately one in 300 people. Homozygous FH (HoFH) has a prevalence of one in 160,000 to 500,000 people. The prevalence is 18 times higher in patients with atherosclerotic cardiovascular disea
+
+
+Pathophysiology
+---------------
+Familial hypercholesterolemia is a disorder that results from absent or defective low-density lipid-protein (LDL) receptors. The LDLR gene is located on the short arm of chromosome 19, and the LDLR is comprised of 860 amino acids. The LDLR is primarily responsible for hepatic uptake of LDL, which co
+
+
+History and Physical
+--------------------
+Detailed personal and family history and a physical exam are important for making the diagnosis. Particular attention should be paid to atherosclerotic cardiovascular diseases (ASCVD) such as angina, prior myocardial infarction, arterial revascularization, transient ischemic attack, stroke, or claud
+
+
+Evaluation
+----------
+It is important to exclude secondary causes of hypercholesterolemia such as hypothyroidism, nephrotic syndrome, and liver disease by history and laboratory testing. Diagnosis of FH in most cases is: In the past, the diagnosis was usually made at the time of an acute MI in a young person. However, it
+
+
+Treatment / Management
+----------------------
+It is important to advise patients on lifestyle modifications and to correct all modifiable non-cholesterol risk factors. A healthy diet, exercise therapy, smoking cessation, and management of obesity constitute important lifestyle management of the disease.Pharmacological options as adjuncts to lif
+
+
+Differential Diagnosis
+----------------------
+In the differential diagnosis of hypercholesterolemia and premature atherosclerosis, familial combined hyperlipidemia, hyperapobetalipoproteinemia, familial dysbetalipoproteinemia, and polygenic hypercholesterolemia should be considered. The other causes of tendon xanthomas and premature atheroscler
+
+
+Prognosis
+---------
+The prognosis of patients with familial hypercholesterolemia is worse than those without this disease at any level of untreated low-density lipoprotein cholesterol. Patients with acute coronary syndrome and a history of heterozygous familial hypercholesterolemia treated with high dose statins have t
+
+
+Complications
+-------------
+Premature coronary artery disease and a thorough sclerotic cardiovascular disease are major complications that can lead to severe morbidity and mortality. Other complications include xanthelasmas and corneal arcus.
+
+
+Deterrence and Patient Education
+--------------------------------
+Children should be encouraged to eat healthy foods to eat more vegetables and fruits and less junk food. Moreover, they should have a screening lipid profile at the age of 9 to 11 and again around age 17 to 21. However, some children may get tested earlier if they have a parent with familial hyperch
+
+
+Pearls and Other Issues
+-----------------------
+Cascade screening is a cost-effective, evidence-based intervention, starting with first-degree relatives of patients with FH by cholesterol screening with or without genetic testing. The use of genetic testing in cascade screening improves the detection rate of FH. Cascade screening can lead to earl
+
+
+Enhancing Healthcare Team Outcomes
+----------------------------------
+The diagnosis and management of familial hypertriglyceridemia require an interprofessional team that includes an endocrinologist, lipid specialist, primary care provider, nurse practitioner, gastroenterologist, cardiologist, internist, nutritionist, and a pharmacist. Besides pharmacological treatmen

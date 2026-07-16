@@ -1,0 +1,181 @@
+Validation passed : 5483
+Validation failed : 7
+
+========== Statistics ==========
+
+Documents : 5490
+Sections  : 16393
+Average sections/document : 2.99
+Unique diseases : 5132
+Average section length : 1265 characters
+
+========== Section Distribution ==========
+
+Information                         4529
+Symptoms                            2748
+Treatment                           2441
+Inheritance                         1446
+Frequency                           1120
+Genetic Changes                     1087
+Causes                              727
+Exams And Tests                     653
+Research                            395
+Outlook                             361
+Susceptibility                      322
+Considerations                      235
+Prevention                          205
+Stages                              77
+Complications                       46
+Support Groups                      1
+
+========== Metadata ==========
+
+dataset                   5490
+document_id               5490
+semantic_group            5139
+semantic_types            5131
+num_sections              5490
+
+========== Duplicate IDs ==========
+
+2
+['medquad_1_CancerGov_QA_0000013_2', 'medquad_1_CancerGov_QA_0000013_3']
+
+========== Longest Document ==========
+
+medquad_7_SeniorHealth_QA_0000008
+Breast Cancer
+28
+54968
+
+
+================================================================================
+medquad_1_CancerGov_QA_0000001_1
+================================================================================
+Disease : Adult Acute Lymphoblastic Leukemia
+Source  : MedQuAD
+Title   : Adult Acute Lymphoblastic Leukemia
+Disease ID : C0751606
+
+Metadata
+--------------------------------------------------------------------------------
+dataset: 1_CancerGov_QA
+document_id: 0000001_1
+semantic_group: Disorders
+semantic_types: ['T191']
+num_sections: 7
+
+Sections
+--------------------------------------------------------------------------------
+
+Information
+-----------
+Key Points - Adult acute lymphoblastic leukemia (ALL) is a type of cancer in which the bone marrow makes too many lymphocytes (a type of white blood cell). - Leukemia may affect red blood cells, white blood cells, and platelets. - Previous chemotherapy and exposure to radiation may increase the risk
+
+
+Symptoms
+--------
+Signs and symptoms of adult ALL include fever, feeling tired, and easy bruising or bleeding. The early signs and symptoms of ALL may be like the flu or other common diseases. Check with your doctor if you have any of the following: - Weakness or feeling tired. - Fever or night sweats. - Easy bruisin
+
+
+Exams And Tests
+---------------
+Tests that examine the blood and bone marrow are used to detect (find) and diagnose adult ALL. The following tests and procedures may be used: - Physical exam and history : An exam of the body to check general signs of health, including checking for signs of disease, such as infection or anything el
+
+
+Outlook
+-------
+Certain factors affect prognosis (chance of recovery) and treatment options. The prognosis (chance of recovery) and treatment options depend on the following: - The age of the patient. - Whether the cancer has spread to the brain or spinal cord. - Whether there are certain changes in the genes, incl
+
+
+Susceptibility
+--------------
+Previous chemotherapy and exposure to radiation may increase the risk of developing ALL. Anything that increases your risk of getting a disease is called a risk factor. Having a risk factor does not mean that you will get cancer; not having risk factors doesnt mean that you will not get cancer. Talk
+
+
+Stages
+------
+Key Points - Once adult ALL has been diagnosed, tests are done to find out if the cancer has spread to the central nervous system (brain and spinal cord) or to other parts of the body. - There is no standard staging system for adult ALL. Once adult ALL has been diagnosed, tests are done to find out 
+
+
+Treatment
+---------
+Key Points - There are different types of treatment for patients with adult ALL. - The treatment of adult ALL usually has two phases. - Four types of standard treatment are used: - Chemotherapy - Radiation therapy - Chemotherapy with stem cell transplant - Targeted therapy - New types of treatment a
+
+
+========== Random Documents ==========
+
+
+
+================================================================================
+medquad_2_GARD_QA_0003805
+================================================================================
+Disease : Marie Unna congenital hypotrichosis
+Source  : MedQuAD
+Title   : Marie Unna congenital hypotrichosis
+Disease ID : C2931059
+
+Metadata
+--------------------------------------------------------------------------------
+dataset: 2_GARD_QA
+document_id: 0003805
+semantic_group: Disorders
+semantic_types: ['T047']
+num_sections: 1
+
+Sections
+--------------------------------------------------------------------------------
+
+Symptoms
+--------
+What are the signs and symptoms of Marie Unna congenital hypotrichosis? The Human Phenotype Ontology provides the following list of signs and symptoms for Marie Unna congenital hypotrichosis. If the information is available, the table below includes how often the symptom is seen in people with this 
+
+
+
+================================================================================
+medquad_2_GARD_QA_0001940
+================================================================================
+Disease : Duodenal ulcer due to antral G-cell hyperfunction
+Source  : MedQuAD
+Title   : Duodenal ulcer due to antral G-cell hyperfunction
+Disease ID : C1852009
+
+Metadata
+--------------------------------------------------------------------------------
+dataset: 2_GARD_QA
+document_id: 0001940
+semantic_group: Disorders
+semantic_types: ['T046', 'T047']
+num_sections: 1
+
+Sections
+--------------------------------------------------------------------------------
+
+Symptoms
+--------
+What are the signs and symptoms of Duodenal ulcer due to antral G-cell hyperfunction? The Human Phenotype Ontology provides the following list of signs and symptoms for Duodenal ulcer due to antral G-cell hyperfunction. If the information is available, the table below includes how often the symptom 
+
+
+
+================================================================================
+medquad_2_GARD_QA_0001744
+================================================================================
+Disease : Deafness with labyrinthine aplasia microtia and microdontia (LAMM)
+Source  : MedQuAD
+Title   : Deafness with labyrinthine aplasia microtia and microdontia (LAMM)
+Disease ID : C0011053
+
+Metadata
+--------------------------------------------------------------------------------
+dataset: 2_GARD_QA
+document_id: 0001744
+semantic_group: Disorders
+semantic_types: ['T019', 'T033']
+num_sections: 1
+
+Sections
+--------------------------------------------------------------------------------
+
+Symptoms
+--------
+What are the signs and symptoms of Deafness with labyrinthine aplasia microtia and microdontia (LAMM)? The Human Phenotype Ontology provides the following list of signs and symptoms for Deafness with labyrinthine aplasia microtia and microdontia (LAMM). If the information is available, the table bel

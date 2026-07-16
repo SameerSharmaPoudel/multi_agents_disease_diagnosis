@@ -1,0 +1,182 @@
+Validation passed : 2033
+Validation failed : 0
+
+========== Statistics ==========
+
+Documents : 2033
+Sections  : 5674
+Average sections/document : 2.79
+Unique diseases : 1984
+Average section length : 795 characters
+
+========== Section Distribution ==========
+
+Section                             3643
+Summary                             2031
+
+========== Metadata ==========
+
+topic_id                  2033
+url                       2033
+language                  2033
+date_created              2033
+mesh_descriptor           1015
+synonyms                  1098
+num_sections              2033
+related_topics            1620
+
+========== Duplicate IDs ==========
+
+0
+
+========== Longest Document ==========
+
+medlineplus_4267
+Paro cardíaco
+2
+8229
+
+
+================================================================================
+medlineplus_6308
+================================================================================
+Disease : A1C
+Source  : MedlinePlus
+Title   : A1C
+Disease ID : Glycated Hemoglobin
+
+Metadata
+--------------------------------------------------------------------------------
+topic_id: 6308
+url: https://medlineplus.gov/a1c.html
+language: English
+date_created: 12/22/2015
+mesh_descriptor: Glycated Hemoglobin
+synonyms: ['Glycohemoglobin', 'HbA1C', 'Hemoglobin A1C test']
+num_sections: 3
+
+Sections
+--------------------------------------------------------------------------------
+
+Summary
+-------
+A1C is a blood test for type 2 diabetes and prediabetes . It measures your average blood glucose, or blood sugar , level over the past 3 months. Doctors may use the A1C alone or in combination with other diabetes tests to make a diagnosis. They also use the A1C to see how well you are managing your 
+
+
+Section
+-------
+Diagnostic Tests
+
+
+Section
+-------
+Diabetes Mellitus
+
+
+========== Random Documents ==========
+
+
+
+================================================================================
+medlineplus_5871
+================================================================================
+Disease : Enfermedades rectales
+Source  : MedlinePlus
+Title   : Enfermedades rectales
+Disease ID : 
+
+Metadata
+--------------------------------------------------------------------------------
+topic_id: 5871
+url: https://medlineplus.gov/spanish/rectaldisorders.html
+language: Spanish
+date_created: 08/29/2011
+synonyms: ['Enfermedades del recto']
+related_topics: ['Cáncer del colon y del recto', 'Enfermedades del ano', 'Enfermedades del sistema digestivo', 'Evacuación de las heces', 'Hemorroides', 'Incontinencia fecal']
+num_sections: 2
+
+Sections
+--------------------------------------------------------------------------------
+
+Summary
+-------
+El recto es la parte inferior del intestino grueso, donde el organismo almacena la materia fecal. Los problemas del recto son comunes. Incluyen hemorroides , abscesos, incontinencia y cáncer . A muchas personas les avergüenza hablar acerca de problemas rectales. Pero es importante consultar al médic
+
+
+Section
+-------
+Sistema digestivo
+
+
+
+================================================================================
+medlineplus_7668
+================================================================================
+Disease : Seguridad de las vacunas
+Source  : MedlinePlus
+Title   : Seguridad de las vacunas
+Disease ID : 
+
+Metadata
+--------------------------------------------------------------------------------
+topic_id: 7668
+url: https://medlineplus.gov/spanish/vaccinesafety.html
+language: Spanish
+date_created: 10/20/2020
+related_topics: ['Vacuna para la gripe', 'Vacunación', 'Vacunas contra el COVID-19', 'Vacunas para el tétanos, difteria y tos ferina', 'Vacunas para los niños']
+num_sections: 4
+
+Sections
+--------------------------------------------------------------------------------
+
+Summary
+-------
+¿Qué son las vacunas? Las vacunas juegan un papel importante para mantenernos saludables. Nos protegen de enfermedades graves y a veces mortales. Las vacunas son inyecciones, líquidos, pastillas o aerosoles nasales que usted toma para enseñarle al sistema inmunitario de su cuerpo a reconocer y defen
+
+
+Section
+-------
+Infecciones
+
+
+Section
+-------
+Sistema inmunitario
+
+
+Section
+-------
+Asuntos de seguridad
+
+
+
+================================================================================
+medlineplus_418
+================================================================================
+Disease : Staphylococcal Infections
+Source  : MedlinePlus
+Title   : Staphylococcal Infections
+Disease ID : Staphylococcal Infections
+
+Metadata
+--------------------------------------------------------------------------------
+topic_id: 418
+url: https://medlineplus.gov/staphylococcalinfections.html
+language: English
+date_created: 11/10/1999
+mesh_descriptor: Staphylococcal Infections
+synonyms: ['Staph']
+related_topics: ['Cellulitis', 'Impetigo', 'MRSA']
+num_sections: 2
+
+Sections
+--------------------------------------------------------------------------------
+
+Summary
+-------
+What are Staphylococcal (staph) infections? Staphylococcus (staph) is a group of bacteria. There are more than 30 types. A type called Staphylococcus aureus causes most infections. Staph bacteria can cause many different types of infections, including: Skin infections , which are the most common typ
+
+
+Section
+-------
+Infections
